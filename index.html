@@ -172,6 +172,17 @@
 <a class="mobile-link py-2 border-b border-slate-800" href="#simulator"><span data-i18n="k5">MT Simülatör</span></a>
 <a class="mobile-link py-2 border-b border-slate-800" href="#lc-calculator">LC Hesaplayıcı</a>
 <a class="mobile-link py-2" href="#contact"><span data-i18n="k6">İletişim</span></a>
+<div class="mt-2 pt-3 border-t border-slate-800">
+<div class="language-selector w-full">
+<button aria-label="Select language" class="language-btn w-full justify-center" id="mobile-language-btn" type="button">
+<span aria-hidden="true" class="language-globe">🌐</span>
+<span id="mobile-current-language-flag">🇹🇷</span>
+<span id="mobile-current-language-code">TR</span>
+<i class="w-4 h-4" data-lucide="chevron-down"></i>
+</button>
+<div class="language-menu" id="mobile-language-menu"></div>
+</div>
+</div>
 <a class="mt-2 w-full text-center py-3 rounded-lg bg-cyan-500 text-white font-bold" href="#contact"><span data-i18n="k7">Teklif Alın</span></a>
 </div>
 </div>
@@ -1117,6 +1128,23 @@ function initMTLanguage(){
  langBtn.addEventListener('click',e=>{e.stopPropagation();langMenu.classList.toggle('open')});
  document.addEventListener('click',e=>{if(!e.target.closest('.language-selector'))langMenu.classList.remove('open')});
  langMenu.addEventListener('click',e=>{const b=e.target.closest('.language-option');if(b){setLang(b.dataset.lang);langMenu.classList.remove('open')}});
+ const mobileLangBtn=document.getElementById('mobile-language-btn');
+ const mobileLangMenu=document.getElementById('mobile-language-menu');
+ if(mobileLangBtn&&mobileLangMenu){
+   mobileLangMenu.innerHTML=langMenu.innerHTML;
+   mobileLangBtn.addEventListener('click',e=>{e.stopPropagation();mobileLangMenu.classList.toggle('open')});
+   mobileLangMenu.addEventListener('click',e=>{const b=e.target.closest('.language-option');if(b){setLang(b.dataset.lang);mobileLangMenu.classList.remove('open')}});
+ }
+ const originalApply=window.applyCurrentLanguage;
+ window.applyCurrentLanguage=function(){
+   originalApply();
+   const lang=localStorage.getItem('mt-detector-language')||'tr';
+   const x=MT_LANGS.find(a=>a[0]===lang)||MT_LANGS[0];
+   const mf=document.getElementById('mobile-current-language-flag');
+   const mc=document.getElementById('mobile-current-language-code');
+   if(mf)mf.textContent=x[1]; if(mc)mc.textContent=x[0].toUpperCase();
+   if(mobileLangMenu)mobileLangMenu.innerHTML=langMenu.innerHTML;
+ };
  setLang(localStorage.getItem('mt-detector-language')||'tr');
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMTLanguage);else initMTLanguage();
