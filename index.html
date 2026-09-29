@@ -11,7 +11,7 @@
     <meta content="website" property="og:type"/>
     <meta content="https://www.mtdetector.com/" property="og:url"/>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -48,7 +48,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -658,7 +658,7 @@
 
           <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center text-sm font-bold">
             <span class="text-slate-400">Hesaplanan Frekans:</span>
-            <span class="text-cyan-400" id="val-freq">476 Hz</span>
+            <span class="text-cyan-400" id="pulse-val-freq">476 Hz</span>
           </div>
         </div>
 
@@ -777,8 +777,10 @@
 
 <!-- SCRIPTS -->
 <script>
-// Initialize Lucide Icons
-lucide.createIcons();
+// Initialize Lucide Icons safely. The page must remain usable if the CDN is unavailable.
+if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+}
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -987,9 +989,11 @@ document.addEventListener('DOMContentLoaded', () => {
       amGainNode = audioCtx.createGain();
       
       amOscillator.frequency.setValueAtTime(5, audioCtx.currentTime);
-      amGainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+      amGainNode.gain.setValueAtTime(0.10, audioCtx.currentTime);
       
-      amOscillator.connect(mainGainNode.gain);
+      // Keep the carrier audible while applying a slow AM envelope.
+      amGainNode.connect(mainGainNode.gain);
+      amOscillator.connect(amGainNode);
       amOscillator.start();
     }
 
@@ -1005,12 +1009,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function stopAudio() {
     if (oscillator) {
-      oscillator.stop();
+      try { oscillator.stop(); } catch (_) {}
       oscillator.disconnect();
+      oscillator = null;
     }
     if (amOscillator) {
-      amOscillator.stop();
+      try { amOscillator.stop(); } catch (_) {}
       amOscillator.disconnect();
+      amOscillator = null;
     }
     if (analyzerStatus) {
       analyzerStatus.textContent = "DURDURULDU";
@@ -1132,7 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Frekans Hesabı T_total = T_width(us) + T_interval(ms)
         let totalTimeSec = (parseFloat(inputs.width.value) / 1000000) + (parseFloat(inputs.interval.value) / 1000);
         let freq = Math.round(1 / totalTimeSec);
-        document.getElementById('val-freq').innerText = freq + " Hz";
+        document.getElementById('pulse-val-freq').innerText = freq + " Hz";
 
         drawSignal();
     }
@@ -1280,7 +1286,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#waveform-selector .wave-btn').forEach(b => {
       b.className = "wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all";
     });
-    document.querySelector('[data-wave="sine"]').className = "wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all";
+    const sineBtn = document.querySelector('#waveform-selector [data-wave="sine"]');
+    if (sineBtn) sineBtn.className = "wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all";
     
     normalState();
     updateUI();
@@ -1310,27 +1317,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateUI() {
-    valFreq.textContent = signalState.freq >= 1000 ? (signalState.freq / 1000).toFixed(1) + ' kHz' : signalState.freq + ' Hz';
-    valAmp.textContent = signalState.amp.toFixed(1) + ' V';
-    valDuty.textContent = signalState.duty + '%';
-    valPhase.textContent = signalState.phase + '°';
-    valOffset.textContent = signalState.offset.toFixed(1) + ' V';
+    if (valFreq) valFreq.textContent = signalState.freq >= 1000 ? (signalState.freq / 1000).toFixed(1) + ' kHz' : signalState.freq + ' Hz';
+    if (valAmp) valAmp.textContent = signalState.amp.toFixed(1) + ' V';
+    if (valDuty) valDuty.textContent = signalState.duty + '%';
+    if (valPhase) valPhase.textContent = signalState.phase + '°';
+    if (valOffset) valOffset.textContent = signalState.offset.toFixed(1) + ' V';
 
     const vpp = (signalState.amp * 2).toFixed(1);
-    telemVpp.textContent = `${vpp} V`;
+    if (telemVpp) telemVpp.textContent = `${vpp} V`;
 
     let vrms = 0;
     if (signalState.wave === 'sine') vrms = (signalState.amp / Math.SQRT2);
     else if (signalState.wave === 'square' || signalState.wave === 'pulse') vrms = signalState.amp * Math.sqrt(signalState.duty / 100);
     else if (signalState.wave === 'triangle' || signalState.wave === 'sawtooth') vrms = signalState.amp / Math.sqrt(3);
 
-    telemVrms.textContent = `${vrms.toFixed(2)} V`;
+    if (telemVrms) telemVrms.textContent = `${vrms.toFixed(2)} V`;
 
     const periodMs = (1000 / signalState.freq);
-    telemPeriod.textContent = periodMs < 1 ? `${(periodMs * 1000).toFixed(0)} µs` : `${periodMs.toFixed(2)} ms`;
+    if (telemPeriod) telemPeriod.textContent = periodMs < 1 ? `${(periodMs * 1000).toFixed(0)} µs` : `${periodMs.toFixed(2)} ms`;
 
     const names = { sine: 'Sinüs', square: 'Kare', triangle: 'Üçgen', sawtooth: 'Testere', pulse: 'Pulse' };
-    telemType.textContent = names[signalState.wave];
+    if (telemType) telemType.textContent = names[signalState.wave];
   }
 
   function getWaveValue(t, wave, duty, phaseRad) {
@@ -1418,5 +1425,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+// Final safety net: keep a single component error from making debugging impossible.
+window.addEventListener('error', function (event) {
+    console.error('[MT Detector] JavaScript error:', event.error || event.message);
+});
+window.addEventListener('unhandledrejection', function (event) {
+    console.error('[MT Detector] Promise error:', event.reason);
+});
+</script>
 </body>
 </html>
