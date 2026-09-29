@@ -121,6 +121,8 @@
             z-index: 0;
             pointer-events: none;
         }
+
+        .language-selector{position:relative;z-index:70}.language-globe{font-size:1.25rem;line-height:1}.language-btn{display:flex;align-items:center;gap:.45rem;padding:.55rem .75rem;border-radius:.75rem;background:rgba(15,23,42,.8);border:1px solid rgba(148,163,184,.2);color:#e2e8f0;font-size:.82rem;font-weight:600;cursor:pointer}.language-btn:hover{border-color:rgba(34,211,238,.55)}.language-menu{position:absolute;right:0;top:calc(100% + .5rem);width:220px;max-height:390px;overflow:auto;padding:.5rem;border-radius:1rem;background:rgba(10,15,29,.98);border:1px solid rgba(148,163,184,.2);box-shadow:0 20px 50px rgba(0,0,0,.45);backdrop-filter:blur(16px);display:none}.language-menu.open{display:block}.language-option{width:100%;display:flex;align-items:center;gap:.65rem;padding:.65rem .7rem;border:0;border-radius:.7rem;background:transparent;color:#cbd5e1;cursor:pointer;text-align:left}.language-option:hover,.language-option.active{background:rgba(6,182,212,.14);color:#fff}.language-flag{font-size:1.2rem}
     </style>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
@@ -152,17 +154,21 @@
 
                 <!-- Desktop Nav -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                    <a href="#home" class="hover:text-cyan-400 transition-colors">Ana Sayfa</a>
-                    <a href="#features" class="hover:text-cyan-400 transition-colors">Özellikler</a>
-                    <a href="#technology" class="hover:text-cyan-400 transition-colors">Teknolojimiz</a>
-                    <a href="#simulator" class="hover:text-cyan-400 transition-colors">MT Simülatör</a>
-                    <a href="#contact" class="hover:text-cyan-400 transition-colors">İletişim</a>
+                    <a href="#home" class="hover:text-cyan-400 transition-colors" data-i18n="nav_home">Ana Sayfa</a>
+                    <a href="#features" class="hover:text-cyan-400 transition-colors" data-i18n="nav_features">Özellikler</a>
+                    <a href="#technology" class="hover:text-cyan-400 transition-colors" data-i18n="nav_technology">Teknolojimiz</a>
+                    <a href="#simulator" class="hover:text-cyan-400 transition-colors" data-i18n="nav_simulator">MT Simülatör</a>
+                    <a href="#contact" class="hover:text-cyan-400 transition-colors" data-i18n="contact">İletişim</a>
                 </nav>
 
                 <!-- CTA Button -->
                 <div class="hidden sm:flex items-center gap-4">
+                    <div class="language-selector">
+                        <button id="language-btn" class="language-btn" type="button" aria-label="Select language"><span class="language-globe" aria-hidden="true">🌐</span><span id="current-language-flag">🇹🇷</span><span id="current-language-code">TR</span><i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div id="language-menu" class="language-menu"></div>
+                    </div>
                     <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all flex items-center gap-2">
-                        <span>Teklif Alın</span>
+                        <span data-i18n="cta">Teklif Alın</span>
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
                 </div>
@@ -177,12 +183,12 @@
         <!-- Mobile Nav Menu -->
         <div id="mobile-menu" class="hidden md:hidden max-w-7xl mx-auto px-4 mt-2">
             <div class="glass-panel rounded-xl p-5 flex flex-col gap-4 text-slate-200">
-                <a href="#home" class="mobile-link py-2 border-b border-slate-800">Ana Sayfa</a>
-                <a href="#features" class="mobile-link py-2 border-b border-slate-800">Özellikler</a>
-                <a href="#technology" class="mobile-link py-2 border-b border-slate-800">Teknolojimiz</a>
-                <a href="#simulator" class="mobile-link py-2 border-b border-slate-800">MT Simülatör</a>
-                <a href="#contact" class="mobile-link py-2">İletişim</a>
-                <a href="#contact" class="mt-2 w-full text-center py-3 rounded-lg bg-cyan-500 text-white font-bold">Teklif Alın</a>
+                <a href="#home" class="mobile-link py-2 border-b border-slate-800" data-i18n="nav_home">Ana Sayfa</a>
+                <a href="#features" class="mobile-link py-2 border-b border-slate-800" data-i18n="nav_features">Özellikler</a>
+                <a href="#technology" class="mobile-link py-2 border-b border-slate-800" data-i18n="nav_technology">Teknolojimiz</a>
+                <a href="#simulator" class="mobile-link py-2 border-b border-slate-800" data-i18n="nav_simulator">MT Simülatör</a>
+                <a href="#contact" class="mobile-link py-2" data-i18n="contact">İletişim</a>
+                <a href="#contact" class="mt-2 w-full text-center py-3 rounded-lg bg-cyan-500 text-white font-bold" data-i18n="cta">Teklif Alın</a>
             </div>
         </div>
     </header>
@@ -203,7 +209,7 @@
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-medium">
                         <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                         <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i>
-                        <span>Yerli ve Milli Yüksek Teknoloji</span>
+                        <span data-i18n="badge">Yerli ve Milli Yüksek Teknoloji</span>
                     </div>
 
                     <!-- Main Heading -->
@@ -221,11 +227,11 @@
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                         <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all flex items-center justify-center gap-3">
                             <i data-lucide="scan" class="w-5 h-5"></i>
-                            <span>Ürünleri İncele</span>
+                            <span data-i18n="products">Ürünleri İncele</span>
                         </a>
                         <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 font-semibold border border-slate-700 hover:border-slate-500 transition-all flex items-center justify-center gap-2">
                             <i data-lucide="mail" class="w-5 h-5"></i>
-                            <span>Bizimle İletişime Geçin</span>
+                            <span data-i18n="contact_us">Bizimle İletişime Geçin</span>
                         </a>
                     </div>
 
@@ -233,15 +239,15 @@
                     <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
                         <div>
                             <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">%100</div>
-                            <div class="text-xs text-slate-400 font-medium mt-1">Yerli Mühendislik</div>
+                            <div class="text-xs text-slate-400 font-medium mt-1" data-i18n="local">Yerli Mühendislik</div>
                         </div>
                         <div>
                             <div class="text-2xl sm:text-3xl font-extrabold text-blue-400">&lt; 0.1ms</div>
-                            <div class="text-xs text-slate-400 font-medium mt-1">Tepki Süresi</div>
+                            <div class="text-xs text-slate-400 font-medium mt-1" data-i18n="response">Tepki Süresi</div>
                         </div>
                         <div>
                             <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">High-Precision</div>
-                            <div class="text-xs text-slate-400 font-medium mt-1">Hassas Sensörler</div>
+                            <div class="text-xs text-slate-400 font-medium mt-1" data-i18n="sensors">Hassas Sensörler</div>
                         </div>
                     </div>
 
@@ -289,11 +295,11 @@
                         <!-- Quick Live Telemetry -->
                         <div class="mt-6 space-y-3 font-mono text-xs text-slate-300">
                             <div class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-                                <span class="text-slate-400">Manyetik Alan Akısı (B)</span>
+                                <span class="text-slate-400" data-i18n="flux">Manyetik Alan Akısı (B)</span>
                                 <span class="text-cyan-400 font-bold" id="flux-value">48.2 μT</span>
                             </div>
                             <div class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
-                                <span class="text-slate-400">Metal Algılama Hassasiyeti</span>
+                                <span class="text-slate-400" data-i18n="sensitivity_live">Metal Algılama Hassasiyeti</span>
                                 <span class="text-emerald-400 font-bold">YÜKSEK (99.8%)</span>
                             </div>
                         </div>
@@ -310,8 +316,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2">Çözümlerimiz &amp; Yeteneklerimiz</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold text-white">Endüstri Standartlarını Belirleyen Teknolojiler</p>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2" data-i18n="solutions">Çözümlerimiz &amp; Yeteneklerimiz</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="standards">Endüstri Standartlarını Belirleyen Teknolojiler</p>
                 <p class="text-slate-400 mt-4 text-base">
                     Gelişmiş manyetik rezonans, elektromanyetik alan işleme ve özelleştirilebilir yerli elektronik kart mimarisi.
                 </p>
@@ -325,13 +331,13 @@
                         <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6">
                             <i data-lucide="shield-search" class="w-7 h-7"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Metal Dedektör Sistemleri</h3>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="metal">Metal Dedektör Sistemleri</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
                             Ağır sanayi, güvenlik ve arazi tarama operasyonları için geliştirilmiş mikroişlemci tabanlı hassas tespit cihazları.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-cyan-400 text-xs font-semibold">
-                        <span>Detayları İncele</span>
+                        <span data-i18n="details">Detayları İncele</span>
                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -342,13 +348,13 @@
                         <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6">
                             <i data-lucide="activity" class="w-7 h-7"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Elektromanyetik Analiz</h3>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="em">Elektromanyetik Analiz</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
                             Manyetik alanların anlık taranması, dijital sinyal işleme (DSP) ve parazit engelleme teknolojileri.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-blue-400 text-xs font-semibold">
-                        <span>Detayları İncele</span>
+                        <span data-i18n="details">Detayları İncele</span>
                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -359,13 +365,13 @@
                         <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6">
                             <i data-lucide="cpu" class="w-7 h-7"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Yerli Ar-Ge &amp; Donanım</h3>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="rd">Yerli Ar-Ge &amp; Donanım</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
                             Yazılımdan donanıma tamamen kendi bünyemizde tasarlanan, yüksek mukavemetli yerli elektronik sistemler.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-purple-400 text-xs font-semibold">
-                        <span>Detayları İncele</span>
+                        <span data-i18n="details">Detayları İncele</span>
                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -376,13 +382,13 @@
                         <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6">
                             <i data-lucide="layers" class="w-7 h-7"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Endüstriyel Özel Çözümler</h3>
+                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="industrial">Endüstriyel Özel Çözümler</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
                             Madencilik, gıda güvenliği ve üretim hatlarına entegre konveyör tipi ayırıcı ve tespit sistemleri.
                         </p>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-amber-400 text-xs font-semibold">
-                        <span>Detayları İncele</span>
+                        <span data-i18n="details">Detayları İncele</span>
                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </div>
                 </div>
@@ -409,8 +415,8 @@
                             <div class="flex items-center gap-3">
                                 <i data-lucide="check-circle-2" class="w-6 h-6 text-cyan-400"></i>
                                 <div>
-                                    <div class="text-sm font-bold text-white">Yüksek Kararlılık &amp; Hassasiyet</div>
-                                    <div class="text-xs text-slate-400">Zorlu arazi ve endüstriyel koşullarda kesintisiz analiz</div>
+                                    <div class="text-sm font-bold text-white" data-i18n="stability">Yüksek Kararlılık &amp; Hassasiyet</div>
+                                    <div class="text-xs text-slate-400" data-i18n="stability_p">Zorlu arazi ve endüstriyel koşullarda kesintisiz analiz</div>
                                 </div>
                             </div>
                         </div>
@@ -419,7 +425,7 @@
 
                 <!-- Right Narrative Column -->
                 <div class="lg:col-span-6 space-y-6">
-                    <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Hakkımızda &amp; Vizyon</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-cyan-400" data-i18n="about">Hakkımızda &amp; Vizyon</span>
                     <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
                         Manyetik Teknolojilerde <br/> Yerli Mühendislik Gücü
                     </h2>
@@ -437,8 +443,8 @@
                                 <i data-lucide="zap" class="w-4 h-4"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">Gelişmiş Sinyal İşleme</h4>
-                                <p class="text-xs text-slate-400">Toprak mineralizasyonunu ve dış parazitleri sıfırlayan akıllı filtreleme.</p>
+                                <h4 class="text-white font-semibold text-sm" data-i18n="signal">Gelişmiş Sinyal İşleme</h4>
+                                <p class="text-xs text-slate-400" data-i18n="signal_p">Toprak mineralizasyonunu ve dış parazitleri sıfırlayan akıllı filtreleme.</p>
                             </div>
                         </div>
 
@@ -447,8 +453,8 @@
                                 <i data-lucide="sliders" class="w-4 h-4"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">Esnek Modüler Tasarım</h4>
-                                <p class="text-xs text-slate-400">Sektörel ihtiyaçlara göre özelleştirilebilir frekans ve hassasiyet ayarları.</p>
+                                <h4 class="text-white font-semibold text-sm" data-i18n="modular">Esnek Modüler Tasarım</h4>
+                                <p class="text-xs text-slate-400" data-i18n="modular_p">Sektörel ihtiyaçlara göre özelleştirilebilir frekans ve hassasiyet ayarları.</p>
                             </div>
                         </div>
                     </div>
@@ -464,9 +470,9 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="text-center mb-12">
-                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Canlı Deneyim</span>
-                <h2 class="text-3xl font-extrabold text-white mt-1">MT Detector Sinyal Simülatörü</h2>
-                <p class="text-slate-400 text-sm mt-2">Aşağıdaki paneli kullanarak manyetik alan ve metal yoğunluğu değişimini test edin.</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400" data-i18n="live">Canlı Deneyim</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1" data-i18n="sim_title">MT Detector Sinyal Simülatörü</h2>
+                <p class="text-slate-400 text-sm mt-2" data-i18n="sim_p">Aşağıdaki paneli kullanarak manyetik alan ve metal yoğunluğu değişimini test edin.</p>
             </div>
 
             <!-- Simulator Widget Container -->
@@ -541,7 +547,7 @@
                 <!-- Contact Info -->
                 <div class="lg:col-span-5 space-y-8">
                     <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">İletişim</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-cyan-400" data-i18n="contact">İletişim</span>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Projeleriniz İçin Bizimle Bağlantıya Geçin</h2>
                         <p class="text-slate-400 mt-4 text-sm leading-relaxed">
                             Dedektör çözümlerimiz, özel mühendislik talepleriniz ve teknik destek için ekibimizle doğrudan iletişim kurabilirsiniz.
@@ -554,7 +560,7 @@
                                 <i data-lucide="map-pin" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">Adres</h4>
+                                <h4 class="text-white font-semibold text-sm" data-i18n="address">Adres</h4>
                                 <p class="text-slate-400 text-sm mt-1">Teknoloji Geliştirme Bölgesi, İstanbul / Türkiye</p>
                             </div>
                         </div>
@@ -564,7 +570,7 @@
                                 <i data-lucide="mail" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">E-Posta</h4>
+                                <h4 class="text-white font-semibold text-sm" data-i18n="email">E-Posta</h4>
                                 <p class="text-slate-400 text-sm mt-1">manyetikteknoloji@gmail.com</p>
                             </div>
                         </div>
@@ -574,7 +580,7 @@
                                 <i data-lucide="globe" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">Web Sitemiz</h4>
+                                <h4 class="text-white font-semibold text-sm" data-i18n="website">Web Sitemiz</h4>
                                 <p class="text-slate-400 text-sm mt-1">www.mtdetector.com</p>
                             </div>
                         </div>
@@ -586,13 +592,13 @@
                     <div class="glass-card rounded-3xl p-8 border border-slate-700">
                         <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
                             <i data-lucide="message-square" class="w-5 h-5 text-cyan-400"></i>
-                            <span>Mesaj Gönderin</span>
+                            <span data-i18n="send_title">Mesaj Gönderin</span>
                         </h3>
 
                         <form id="contact-form" class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Adınız Soyadınız</label>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="name">Adınız Soyadınız</label>
                                     <input type="text" required placeholder="Ahmet Yılmaz" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm">
                                 </div>
                                 <div>
@@ -602,18 +608,18 @@
                             </div>
 
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1">Konu</label>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="subject">Konu</label>
                                 <input type="text" placeholder="Ürün Bilgisi / Teklif Talebi" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm">
                             </div>
 
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1">Mesajınız</label>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="message">Mesajınız</label>
                                 <textarea rows="4" required placeholder="Mesajınızı buraya yazabilirsiniz..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm"></textarea>
                             </div>
 
                             <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="send" class="w-4 h-4"></i>
-                                <span>Mesajı Gönder</span>
+                                <span data-i18n="send">Mesajı Gönder</span>
                             </button>
                         </form>
 
@@ -631,9 +637,9 @@
                     <span>&copy; 2026 MT Detector. Tüm hakları saklıdır.</span>
                 </div>
                 <div class="flex items-center gap-6">
-                    <a href="#" class="hover:text-slate-300 transition-colors">Gizlilik Politikası</a>
-                    <a href="#" class="hover:text-slate-300 transition-colors">Kullanım Şartları</a>
-                    <a href="#" class="hover:text-slate-300 transition-colors">KVKK</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors" data-i18n="privacy">Gizlilik Politikası</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors" data-i18n="terms">Kullanım Şartları</a>
+                    <a href="#" class="hover:text-slate-300 transition-colors" data-i18n="kvkk">KVKK</a>
                 </div>
             </div>
 
@@ -864,6 +870,26 @@
                 formResponse.classList.add('hidden');
             }, 5000);
         });
+
+        // MT Detector language selector
+        const MT_LANGS=[['tr','🇹🇷','Türkçe'],['en','🇬🇧','English'],['zh','🇨🇳','中文'],['hi','🇮🇳','हिन्दी'],['es','🇪🇸','Español'],['ar','🇸🇦','العربية'],['fr','🇫🇷','Français'],['bn','🇧🇩','বাংলা'],['pt','🇵🇹','Português'],['id','🇮🇩','Bahasa Indonesia'],['ur','🇵🇰','اردو'],['ru','🇷🇺','Русский'],['de','🇩🇪','Deutsch'],['ja','🇯🇵','日本語']];
+        const MT_T={
+        tr:{nav_home:'Ana Sayfa',nav_features:'Özellikler',nav_technology:'Teknolojimiz',nav_simulator:'MT Simülatör',nav_contact:'İletişim',cta:'Teklif Alın',badge:'Yerli ve Milli Yüksek Teknoloji',products:'Ürünleri İncele',contact_us:'Bizimle İletişime Geçin',local:'Yerli Mühendislik',response:'Tepki Süresi',sensors:'Hassas Sensörler',solutions:'Çözümlerimiz & Yeteneklerimiz',standards:'Endüstri Standartlarını Belirleyen Teknolojiler',metal:'Metal Dedektör Sistemleri',em:'Elektromanyetik Analiz',rd:'Yerli Ar-Ge & Donanım',industrial:'Endüstriyel Özel Çözümler',details:'Detayları İncele',about:'Hakkımızda & Vizyon',signal:'Gelişmiş Sinyal İşleme',modular:'Esnek Modüler Tasarım',live:'Canlı Deneyim',sim_title:'MT Detector Sinyal Simülatörü',sim_p:'Aşağıdaki paneli kullanarak manyetik alan ve metal yoğunluğu değişimini test edin.',detect:'Metal Nesne Algıla',reset:'Sıfırla',contact:'İletişim',contact_title:'Projeleriniz İçin Bizimle Bağlantıya Geçin',contact_p:'Dedektör çözümlerimiz, özel mühendislik talepleriniz ve teknik destek için ekibimizle doğrudan iletişim kurabilirsiniz.',address:'Adres',email:'E-Posta',website:'Web Sitemiz',send_title:'Mesaj Gönderin',name:'Adınız Soyadınız',subject:'Konu',message:'Mesajınız',send:'Mesajı Gönder',privacy:'Gizlilik Politikası',terms:'Kullanım Şartları',kvkk:'KVKK',flux:'Manyetik Alan Akısı (B)',sensitivity_live:'Metal Algılama Hassasiyeti',stability:'Yüksek Kararlılık & Hassasiyet',stability_p:'Zorlu arazi ve endüstriyel koşullarda kesintisiz analiz'},
+        en:{nav_home:'Home',nav_features:'Features',nav_technology:'Our Technology',nav_simulator:'MT Simulator',nav_contact:'Contact',cta:'Get a Quote',badge:'Domestic & High Technology',products:'Explore Products',contact_us:'Contact Us',local:'Local Engineering',response:'Response Time',sensors:'High-Precision Sensors',solutions:'Our Solutions & Capabilities',standards:'Technologies Setting Industry Standards',metal:'Metal Detector Systems',em:'Electromagnetic Analysis',rd:'Domestic R&D & Hardware',industrial:'Industrial Custom Solutions',details:'View Details',about:'About Us & Vision',signal:'Advanced Signal Processing',modular:'Flexible Modular Design',live:'Live Experience',sim_title:'MT Detector Signal Simulator',sim_p:'Use the panel below to test changes in magnetic field and metal density.',detect:'Detect Metal Object',reset:'Reset',contact:'Contact',contact_title:'Connect With Us For Your Projects',contact_p:'Contact our team directly for detector solutions, custom engineering requests and technical support.',address:'Address',email:'Email',website:'Our Website',send_title:'Send a Message',name:'Full Name',subject:'Subject',message:'Your Message',send:'Send Message',privacy:'Privacy Policy',terms:'Terms of Use',kvkk:'Data Protection',flux:'Magnetic Flux Density (B)',sensitivity_live:'Metal Detection Sensitivity',stability:'High Stability & Precision',stability_p:'Continuous analysis in challenging field and industrial conditions'},
+        zh:{nav_home:'首页',nav_features:'功能',nav_technology:'我们的技术',nav_simulator:'MT 模拟器',nav_contact:'联系我们',cta:'获取报价',badge:'国产高科技',products:'查看产品',contact_us:'联系我们',local:'本土工程',response:'响应时间',sensors:'高精度传感器',solutions:'我们的解决方案与能力',standards:'引领行业标准的技术',metal:'金属探测系统',em:'电磁分析',rd:'国产研发与硬件',industrial:'工业定制解决方案',details:'查看详情',about:'关于我们与愿景',signal:'先进信号处理',modular:'灵活模块化设计',live:'实时体验',sim_title:'MT Detector 信号模拟器',sim_p:'使用下面的面板测试磁场和金属密度的变化。',detect:'检测金属目标',reset:'重置',contact:'联系我们',contact_title:'欢迎联系我们洽谈项目',contact_p:'如需探测器解决方案、定制工程服务和技术支持，请直接联系我们的团队。',address:'地址',email:'电子邮件',website:'网站',send_title:'发送消息',name:'姓名',subject:'主题',message:'您的消息',send:'发送消息',privacy:'隐私政策',terms:'使用条款',kvkk:'数据保护',flux:'磁通密度 (B)',sensitivity_live:'金属探测灵敏度',stability:'高稳定性与精度',stability_p:'在复杂野外和工业环境中持续分析'},
+        hi:{nav_home:'होम',nav_features:'विशेषताएँ',nav_technology:'हमारी तकनीक',nav_simulator:'MT सिमुलेटर',nav_contact:'संपर्क',cta:'कोटेशन लें',badge:'स्वदेशी एवं उच्च तकनीक',products:'उत्पाद देखें',contact_us:'हमसे संपर्क करें',local:'स्वदेशी इंजीनियरिंग',response:'प्रतिक्रिया समय',sensors:'उच्च-सटीक सेंसर',solutions:'हमारे समाधान और क्षमताएँ',standards:'उद्योग मानक स्थापित करने वाली तकनीकें',metal:'मेटल डिटेक्टर सिस्टम',em:'विद्युतचुंबकीय विश्लेषण',rd:'स्वदेशी R&D और हार्डवेयर',industrial:'औद्योगिक कस्टम समाधान',details:'विवरण देखें',about:'हमारे बारे में और दृष्टि',signal:'उन्नत सिग्नल प्रोसेसिंग',modular:'लचीला मॉड्यूलर डिज़ाइन',live:'लाइव अनुभव',sim_title:'MT Detector सिग्नल सिमुलेटर',sim_p:'नीचे दिए पैनल से चुंबकीय क्षेत्र और धातु घनत्व में बदलाव का परीक्षण करें।',detect:'धातु वस्तु पहचानें',reset:'रीसेट',contact:'संपर्क',contact_title:'अपने प्रोजेक्ट के लिए हमसे जुड़ें',contact_p:'डिटेक्टर समाधान, विशेष इंजीनियरिंग अनुरोध और तकनीकी सहायता के लिए हमारी टीम से सीधे संपर्क करें।',address:'पता',email:'ई-मेल',website:'वेबसाइट',send_title:'संदेश भेजें',name:'नाम',subject:'विषय',message:'आपका संदेश',send:'संदेश भेजें',privacy:'गोपनीयता नीति',terms:'उपयोग की शर्तें',kvkk:'डेटा संरक्षण',flux:'चुंबकीय फ्लक्स घनत्व (B)',sensitivity_live:'धातु पहचान संवेदनशीलता',stability:'उच्च स्थिरता और सटीकता',stability_p:'कठिन फील्ड और औद्योगिक परिस्थितियों में निरंतर विश्लेषण'},
+        es:{nav_home:'Inicio',nav_features:'Características',nav_technology:'Nuestra Tecnología',nav_simulator:'Simulador MT',nav_contact:'Contacto',cta:'Solicitar Cotización',badge:'Alta Tecnología Nacional',products:'Ver Productos',contact_us:'Contáctenos',local:'Ingeniería Nacional',response:'Tiempo de Respuesta',sensors:'Sensores de Alta Precisión',solutions:'Nuestras Soluciones y Capacidades',standards:'Tecnologías que Definen los Estándares Industriales',metal:'Sistemas Detectores de Metales',em:'Análisis Electromagnético',rd:'I+D y Hardware Nacional',industrial:'Soluciones Industriales Personalizadas',details:'Ver Detalles',about:'Sobre Nosotros y Visión',signal:'Procesamiento Avanzado de Señales',modular:'Diseño Modular Flexible',live:'Experiencia en Vivo',sim_title:'Simulador de Señal MT Detector',sim_p:'Utilice el panel para probar cambios en el campo magnético y la densidad del metal.',detect:'Detectar Objeto Metálico',reset:'Restablecer',contact:'Contacto',contact_title:'Conéctese con Nosotros para Sus Proyectos',contact_p:'Para soluciones de detectores, solicitudes de ingeniería personalizada y soporte técnico, contacte directamente con nuestro equipo.',address:'Dirección',email:'Correo Electrónico',website:'Nuestro Sitio Web',send_title:'Enviar Mensaje',name:'Nombre y Apellidos',subject:'Asunto',message:'Su Mensaje',send:'Enviar Mensaje',privacy:'Política de Privacidad',terms:'Términos de Uso',kvkk:'Protección de Datos',flux:'Densidad de Flujo Magnético (B)',sensitivity_live:'Sensibilidad de Detección de Metales',stability:'Alta Estabilidad y Precisión',stability_p:'Análisis continuo en condiciones exigentes'},
+        fr:{nav_home:'Accueil',nav_features:'Fonctionnalités',nav_technology:'Notre Technologie',nav_simulator:'Simulateur MT',nav_contact:'Contact',cta:'Demander un Devis',badge:'Haute Technologie Nationale',products:'Voir les Produits',contact_us:'Nous Contacter',local:'Ingénierie Nationale',response:'Temps de Réponse',sensors:'Capteurs Haute Précision',solutions:'Nos Solutions & Compétences',standards:'Technologies qui Établissent les Standards Industriels',metal:'Systèmes de Détection des Métaux',em:'Analyse Électromagnétique',rd:'R&D & Matériel National',industrial:'Solutions Industrielles Sur Mesure',details:'Voir les Détails',about:'À Propos & Vision',signal:'Traitement Avancé du Signal',modular:'Conception Modulaire Flexible',live:'Expérience en Direct',sim_title:'Simulateur de Signal MT Detector',sim_p:'Utilisez le panneau pour tester les variations du champ magnétique et de la densité métallique.',detect:'Détecter un Objet Métallique',reset:'Réinitialiser',contact:'Contact',contact_title:'Contactez-Nous pour Vos Projets',contact_p:'Pour nos solutions de détection, vos demandes d’ingénierie sur mesure et le support technique, contactez directement notre équipe.',address:'Adresse',email:'E-mail',website:'Notre Site Web',send_title:'Envoyer un Message',name:'Nom et Prénom',subject:'Objet',message:'Votre Message',send:'Envoyer le Message',privacy:'Politique de Confidentialité',terms:'Conditions d’Utilisation',kvkk:'Protection des Données',flux:'Densité de Flux Magnétique (B)',sensitivity_live:'Sensibilité de Détection des Métaux',stability:'Grande Stabilité & Précision',stability_p:'Analyse continue dans des conditions difficiles'},
+        de:{nav_home:'Startseite',nav_features:'Funktionen',nav_technology:'Unsere Technologie',nav_simulator:'MT-Simulator',nav_contact:'Kontakt',cta:'Angebot anfordern',badge:'Nationale Hochtechnologie',products:'Produkte ansehen',contact_us:'Kontaktieren Sie uns',local:'Lokale Ingenieurtechnik',response:'Reaktionszeit',sensors:'Hochpräzise Sensoren',solutions:'Unsere Lösungen & Kompetenzen',standards:'Technologien, die Industriestandards setzen',metal:'Metalldetektorsysteme',em:'Elektromagnetische Analyse',rd:'Nationale F&E & Hardware',industrial:'Individuelle Industrielösungen',details:'Details ansehen',about:'Über uns & Vision',signal:'Fortschrittliche Signalverarbeitung',modular:'Flexibles modulares Design',live:'Live-Erlebnis',sim_title:'MT Detector Signal-Simulator',sim_p:'Testen Sie Änderungen von Magnetfeld und Metalldichte.',detect:'Metallobjekt erkennen',reset:'Zurücksetzen',contact:'Kontakt',contact_title:'Kontaktieren Sie uns für Ihre Projekte',contact_p:'Für Detektorlösungen, individuelle Engineering-Anfragen und technischen Support können Sie unser Team direkt kontaktieren.',address:'Adresse',email:'E-Mail',website:'Unsere Website',send_title:'Nachricht senden',name:'Vor- und Nachname',subject:'Betreff',message:'Ihre Nachricht',send:'Nachricht senden',privacy:'Datenschutzerklärung',terms:'Nutzungsbedingungen',kvkk:'Datenschutz',flux:'Magnetische Flussdichte (B)',sensitivity_live:'Metallerkennungsempfindlichkeit',stability:'Hohe Stabilität & Präzision',stability_p:'Kontinuierliche Analyse unter anspruchsvollen Bedingungen'},
+        ru:{nav_home:'Главная',nav_features:'Возможности',nav_technology:'Наша технология',nav_simulator:'Симулятор MT',nav_contact:'Контакты',cta:'Получить предложение',badge:'Высокие отечественные технологии',products:'Смотреть продукты',contact_us:'Связаться с нами',local:'Отечественная инженерия',response:'Время отклика',sensors:'Высокоточные датчики',solutions:'Наши решения и возможности',standards:'Технологии, задающие отраслевые стандарты',metal:'Металлоискатели',em:'Электромагнитный анализ',rd:'Отечественные НИОКР и оборудование',industrial:'Промышленные решения',details:'Подробнее',about:'О нас и видение',signal:'Передовая обработка сигналов',modular:'Гибкая модульная конструкция',live:'Интерактивный опыт',sim_title:'Симулятор сигнала MT Detector',sim_p:'Используйте панель для тестирования изменений магнитного поля и плотности металла.',detect:'Обнаружить металл',reset:'Сбросить',contact:'Контакты',contact_title:'Свяжитесь с нами по вашему проекту',contact_p:'Для решений по обнаружению, индивидуальной инженерии и технической поддержки свяжитесь с нашей командой.',address:'Адрес',email:'Электронная почта',website:'Наш сайт',send_title:'Отправить сообщение',name:'Имя и фамилия',subject:'Тема',message:'Ваше сообщение',send:'Отправить',privacy:'Политика конфиденциальности',terms:'Условия использования',kvkk:'Защита данных',flux:'Плотность магнитного потока (B)',sensitivity_live:'Чувствительность обнаружения металла',stability:'Высокая стабильность и точность',stability_p:'Непрерывный анализ в сложных условиях'},
+        ja:{nav_home:'ホーム',nav_features:'特徴',nav_technology:'技術',nav_simulator:'MTシミュレーター',nav_contact:'お問い合わせ',cta:'見積もりを依頼',badge:'国産・先進テクノロジー',products:'製品を見る',contact_us:'お問い合わせ',local:'国産エンジニアリング',response:'応答時間',sensors:'高精度センサー',solutions:'ソリューションと技術力',standards:'業界標準を生み出す技術',metal:'金属探知システム',em:'電磁解析',rd:'国産R&D・ハードウェア',industrial:'産業向けカスタムソリューション',details:'詳細を見る',about:'会社概要・ビジョン',signal:'高度な信号処理',modular:'柔軟なモジュール設計',live:'ライブ体験',sim_title:'MT Detector シグナルシミュレーター',sim_p:'下のパネルで磁場と金属密度の変化をテストできます。',detect:'金属物体を検出',reset:'リセット',contact:'お問い合わせ',contact_title:'プロジェクトについてお問い合わせください',contact_p:'探知機ソリューション、カスタムエンジニアリング、技術サポートについてお問い合わせください。',address:'住所',email:'メール',website:'ウェブサイト',send_title:'メッセージを送る',name:'氏名',subject:'件名',message:'メッセージ',send:'送信',privacy:'プライバシーポリシー',terms:'利用規約',kvkk:'データ保護',flux:'磁束密度 (B)',sensitivity_live:'金属検出感度',stability:'高い安定性と精度',stability_p:'厳しい現場・産業環境での継続的な分析'}
+        };
+        // Languages not listed with full phrase overrides inherit English UI labels; flags/names remain selectable.
+        ['ar','bn','id','pt','ur'].forEach(k=>{if(!MT_T[k]) MT_T[k]={...MT_T.en};});
+        const langBtn=document.getElementById('language-btn'),langMenu=document.getElementById('language-menu');
+        function makeLangMenu(){langMenu.innerHTML=MT_LANGS.map(([c,f,n])=>`<button class="language-option" data-lang="${c}"><span class="language-flag">${f}</span><span>${n}</span></button>`).join('');}
+        function setMTLanguage(lang){const d=MT_T[lang]||MT_T.en;document.documentElement.lang=lang;document.documentElement.dir=['ar','ur'].includes(lang)?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.dataset.i18n;if(d[k])e.textContent=d[k];});const x=MT_LANGS.find(a=>a[0]===lang)||MT_LANGS[0];document.getElementById('current-language-flag').textContent=x[1];document.getElementById('current-language-code').textContent=x[0].toUpperCase();document.querySelectorAll('.language-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));localStorage.setItem('mt-detector-language',lang);}
+        makeLangMenu();langBtn.addEventListener('click',e=>{e.stopPropagation();langMenu.classList.toggle('open');});document.addEventListener('click',e=>{if(!e.target.closest('.language-selector'))langMenu.classList.remove('open');});document.querySelectorAll('.language-option').forEach(b=>b.addEventListener('click',()=>{setMTLanguage(b.dataset.lang);langMenu.classList.remove('open');}));setMTLanguage(localStorage.getItem('mt-detector-language')||'tr');
     </script>
 </body>
 </html>
