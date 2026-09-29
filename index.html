@@ -11,7 +11,7 @@
     <meta content="website" property="og:type"/>
     <meta content="https://www.mtdetector.com/" property="og:url"/>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -48,7 +48,7 @@
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -658,7 +658,7 @@
 
           <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center text-sm font-bold">
             <span class="text-slate-400">Hesaplanan Frekans:</span>
-            <span class="text-cyan-400" id="pulse-val-freq">476 Hz</span>
+            <span class="text-cyan-400" id="val-freq">476 Hz</span>
           </div>
         </div>
 
@@ -775,63 +775,10 @@
 </div>
 </section>
 
-
-<!-- Language system -->
-<script>
-(function(){
-  const languageBtn=document.getElementById('language-btn');
-  const languageMenu=document.getElementById('language-menu');
-  const langFlag=document.getElementById('current-language-flag');
-  const langCode=document.getElementById('current-language-code');
-  const langs={
-    tr:{name:'Türkçe',flag:'🇹🇷',code:'TR'},
-    en:{name:'English',flag:'🇬🇧',code:'EN'},
-    de:{name:'Deutsch',flag:'🇩🇪',code:'DE'},
-    fr:{name:'Français',flag:'🇫🇷',code:'FR'},
-    es:{name:'Español',flag:'🇪🇸',code:'ES'}
-  };
-  const translations={
-    en:["MANYETIK","TECHNOLOGY","Home","Features","Our Technology","MT Simulator","Contact","Get a Quote","Local and National High Technology","Magnetic Field &","Advanced Detector","Technologies","As Manyetik Teknoloji, we develop innovative local technologies based on magnetic fields and electronics. With industrial solutions and high-precision detection systems, we shape the future.","Explore Products","Contact Us","Local Engineering","Response Time","High-Precision Sensors","Magnetic Flux Density (B)","Metal Detection Sensitivity","HIGH (99.8%)","Our Solutions & Capabilities","Technologies Setting Industry Standards","Advanced magnetic resonance, electromagnetic field processing and customizable local electronic card architecture.","Metal Detector Systems","High-precision microprocessor-based detection devices developed for heavy industry, security and field scanning operations.","Learn More","Electromagnetic Analysis","Real-time scanning of magnetic fields, digital signal processing (DSP) and interference suppression technologies.","Local R&D & Hardware","Electronic systems designed entirely in-house, from software to hardware, with high mechanical strength.","Industrial Custom Solutions","Conveyor-type separation and detection systems integrated into mining, food safety and production lines.","High Stability & Precision","Continuous analysis in challenging field and industrial conditions","About Us & Vision","Local Engineering Power in Magnetic Technologies","Under our Manyetik Teknoloji brand, we conduct advanced R&D in precise measurement of electromagnetic fields, metal search and detector systems.","With our high-quality sensor modules, advanced algorithms that filter difficult environmental interference, and user-friendly interfaces, we are a reliable solution partner in local technology.","Advanced Signal Processing","Smart filtering that suppresses soil mineralization and external interference.","Flexible Modular Design","Customizable frequency and sensitivity settings according to sectoral needs.","Live Experience","MT Detector Signal Simulator","Use the panel below to test changes in magnetic field and metal density.","FREQUENCY","__K47_UNUSED__","Detect Metal Object","Reset","SIGNAL GRAPH (OSCILLOSCOPE)","LIVE FEED","STATUS:","NORMAL MAGNETIC FIELD","Projects: Get in Touch With Us","You can directly contact our team for detector solutions, custom engineering requests and technical support.","Address","Technology Development Zone, Istanbul / Türkiye","Email","Website","Send a Message","Full Name","Your Email Address","Subject","Your Message","Send Message","© 2026 MT Detector. All rights reserved.","Privacy Policy","Terms of Use","KVKK"],
-    de:["MANYETİK","TECHNOLOGIE","Startseite","Funktionen","Unsere Technologie","MT-Simulator","Kontakt","Angebot erhalten","Lokale und nationale Hochtechnologie","Magnetfeld &","Fortschrittliche Detektoren","Technologien","Als Manyetik Teknoloji entwickeln wir innovative lokale Technologien auf Basis von Magnetfeldern und Elektronik. Mit industriellen Lösungen und hochpräzisen Erkennungssystemen gestalten wir die Zukunft.","Produkte ansehen","Kontakt aufnehmen","Lokale Ingenieurskunst","Reaktionszeit","Hochpräzise Sensoren","Magnetische Flussdichte (B)","Metallerkennungsempfindlichkeit","HOCH (99,8 %)","Unsere Lösungen & Fähigkeiten","Technologien, die Industriestandards setzen","Fortschrittliche magnetische Resonanz, elektromagnetische Feldverarbeitung und anpassbare lokale Elektronikkartenarchitektur.","Metall-Detektorsysteme","Hochpräzise mikroprozessorbasierte Erkennungsgeräte für Schwerindustrie, Sicherheit und Geländesuche.","Details ansehen","Elektromagnetische Analyse","Echtzeit-Scan von Magnetfeldern, digitale Signalverarbeitung (DSP) und Störunterdrückungstechnologien.","Lokale F&E & Hardware","Von der Software bis zur Hardware vollständig intern entwickelte elektronische Systeme mit hoher mechanischer Belastbarkeit.","Industrielle Sonderlösungen","In Produktionslinien integrierte Förderband-Trenn- und Erkennungssysteme für Bergbau, Lebensmittelsicherheit und Produktion.","Hohe Stabilität & Präzision","Kontinuierliche Analyse unter schwierigen Gelände- und Industriebedingungen","Über uns & Vision","Lokale Ingenieurskompetenz für magnetische Technologien","Unter unserer Marke Manyetik Teknoloji führen wir fortschrittliche F&E in der präzisen Messung elektromagnetischer Felder, Metallsuche und Detektorsystemen durch.","Mit hochwertigen Sensormodulen, fortschrittlichen Algorithmen zur Filterung schwieriger Umgebungsstörungen und benutzerfreundlichen Schnittstellen sind wir ein zuverlässiger Partner für lokale Technologie.","Fortschrittliche Signalverarbeitung","Intelligente Filterung zur Unterdrückung von Bodenmineralisierung und externen Störungen.","Flexibles modulares Design","Anpassbare Frequenz- und Empfindlichkeitseinstellungen entsprechend den Branchenanforderungen.","Live-Erlebnis","MT Detector Signal-Simulator","Testen Sie mit dem folgenden Panel Änderungen des Magnetfelds und der Metalldichte.","FREQUENZ","__K47_UNUSED__","Metallobjekt erkennen","Zurücksetzen","SIGNALGRAPH (OSZILLOSKOP)","LIVE-FEED","STATUS:","NORMALES MAGNETFELD","Projekte: Kontaktieren Sie uns","Für Detektorlösungen, individuelle Ingenieursanfragen und technischen Support können Sie direkt mit unserem Team Kontakt aufnehmen.","Adresse","Technologieentwicklungszone, Istanbul / Türkiye","E-Mail","Webseite","Nachricht senden","Vor- und Nachname","E-Mail-Adresse","Betreff","Ihre Nachricht","Nachricht senden","© 2026 MT Detector. Alle Rechte vorbehalten.","Datenschutzerklärung","Nutzungsbedingungen","KVKK"],
-    fr:["MANYETİK","TECHNOLOGIE","Accueil","Fonctionnalités","Notre technologie","Simulateur MT","Contact","Demander un devis","Haute technologie locale et nationale","Champ magnétique &","Détecteurs avancés","Technologies","Chez Manyetik Teknoloji, nous développons des technologies locales innovantes basées sur les champs magnétiques et l’électronique. Avec des solutions industrielles et des systèmes de détection haute précision, nous construisons l’avenir.","Voir les produits","Nous contacter","Ingénierie locale","Temps de réponse","Capteurs haute précision","Densité de flux magnétique (B)","Sensibilité de détection des métaux","ÉLEVÉE (99,8 %)","Nos solutions & compétences","Des technologies qui définissent les standards industriels","Résonance magnétique avancée, traitement des champs électromagnétiques et architecture de cartes électroniques locales personnalisables.","Systèmes de détecteurs de métaux","Dispositifs de détection à microprocesseur haute précision pour l’industrie lourde, la sécurité et la recherche sur terrain.","Voir les détails","Analyse électromagnétique","Balayage en temps réel des champs magnétiques, traitement numérique du signal (DSP) et technologies de suppression des interférences.","R&D & matériel local","Systèmes électroniques conçus entièrement en interne, du logiciel au matériel, avec une grande robustesse mécanique.","Solutions industrielles sur mesure","Systèmes de séparation et de détection sur convoyeur intégrés aux lignes minières, agroalimentaires et de production.","Haute stabilité & précision","Analyse continue dans des conditions difficiles de terrain et industrielles","À propos & vision","La force de l’ingénierie locale dans les technologies magnétiques","Sous notre marque Manyetik Teknoloji, nous menons des travaux de R&D avancés sur la mesure précise des champs électromagnétiques, la recherche de métaux et les systèmes de détection.","Grâce à nos modules de capteurs de haute qualité, nos algorithmes avancés de filtrage des perturbations environnementales et nos interfaces conviviales, nous sommes un partenaire fiable en technologie locale.","Traitement avancé du signal","Filtrage intelligent supprimant la minéralisation du sol et les interférences externes.","Conception modulaire flexible","Réglages de fréquence et de sensibilité personnalisables selon les besoins du secteur.","Expérience en direct","Simulateur de signal MT Detector","Utilisez le panneau ci-dessous pour tester les variations du champ magnétique et de la densité métallique.","FRÉQUENCE","__K47_UNUSED__","Détecter un objet métallique","Réinitialiser","GRAPHIQUE DU SIGNAL (OSCILLOSCOPE)","FLUX EN DIRECT","ÉTAT :","CHAMP MAGNÉTIQUE NORMAL","Projets : contactez-nous","Contactez directement notre équipe pour nos solutions de détection, vos demandes d’ingénierie sur mesure et le support technique.","Adresse","Zone de développement technologique, Istanbul / Türkiye","E-mail","Site web","Envoyer un message","Nom et prénom","Votre adresse e-mail","Sujet","Votre message","Envoyer le message","© 2026 MT Detector. Tous droits réservés.","Politique de confidentialité","Conditions d’utilisation","KVKK"],
-    es:["MANYETİK","TECNOLOGÍA","Inicio","Características","Nuestra tecnología","Simulador MT","Contacto","Solicitar presupuesto","Alta tecnología local y nacional","Campo magnético &","Detectores avanzados","Tecnologías","En Manyetik Teknoloji desarrollamos tecnologías locales innovadoras basadas en campos magnéticos y electrónica. Con soluciones industriales y sistemas de detección de alta precisión, construimos el futuro.","Ver productos","Contáctenos","Ingeniería local","Tiempo de respuesta","Sensores de alta precisión","Densidad de flujo magnético (B)","Sensibilidad de detección de metales","ALTA (99,8 %)","Nuestras soluciones y capacidades","Tecnologías que establecen los estándares industriales","Resonancia magnética avanzada, procesamiento de campos electromagnéticos y arquitectura de tarjetas electrónicas locales personalizables.","Sistemas detectores de metales","Dispositivos de detección de alta precisión basados en microprocesadores para industria pesada, seguridad y exploración de campo.","Ver detalles","Análisis electromagnético","Escaneo en tiempo real de campos magnéticos, procesamiento digital de señales (DSP) y tecnologías de supresión de interferencias.","I+D y hardware local","Sistemas electrónicos diseñados completamente internamente, desde el software hasta el hardware, con alta resistencia mecánica.","Soluciones industriales personalizadas","Sistemas de separación y detección mediante transportadores integrados en minería, seguridad alimentaria y líneas de producción.","Alta estabilidad y precisión","Análisis continuo en condiciones exigentes de campo e industriales","Sobre nosotros y visión","Potencia de ingeniería local en tecnologías magnéticas","Bajo nuestra marca Manyetik Teknoloji realizamos I+D avanzada en medición precisa de campos electromagnéticos, búsqueda de metales y sistemas detectores.","Con módulos de sensores de alta calidad, algoritmos avanzados que filtran interferencias ambientales difíciles e interfaces fáciles de usar, somos un socio fiable en tecnología local.","Procesamiento avanzado de señales","Filtrado inteligente que elimina la mineralización del suelo y las interferencias externas.","Diseño modular flexible","Ajustes de frecuencia y sensibilidad personalizables según las necesidades del sector.","Experiencia en vivo","Simulador de señales MT Detector","Utilice el panel siguiente para probar cambios en el campo magnético y la densidad metálica.","FRECUENCIA","__K47_UNUSED__","Detectar objeto metálico","Restablecer","GRÁFICO DE SEÑAL (OSCILOSCOPIO)","FLUJO EN VIVO","ESTADO:","CAMPO MAGNÉTICO NORMAL","Proyectos: póngase en contacto","Puede contactar directamente con nuestro equipo para soluciones de detectores, solicitudes de ingeniería personalizada y soporte técnico.","Dirección","Zona de Desarrollo Tecnológico, Estambul / Türkiye","Correo electrónico","Sitio web","Enviar un mensaje","Nombre y apellidos","Su dirección de correo","Asunto","Su mensaje","Enviar mensaje","© 2026 MT Detector. Todos los derechos reservados.","Política de privacidad","Términos de uso","KVKK"],
-  };
-  const trValues=[...document.querySelectorAll('[data-i18n]')].map(el=>el.textContent);
-  const keyToIndex={}; let idx=0;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(!(k in keyToIndex)) keyToIndex[k]=idx++; });
-  function renderMenu(){
-    languageMenu.innerHTML='';
-    Object.entries(langs).forEach(([id,l])=>{
-      const b=document.createElement('button'); b.type='button'; b.className='language-option'; b.dataset.lang=id;
-      b.innerHTML=`<span class="language-flag">${l.flag}</span><span>${l.name}</span><span class="ml-auto text-xs opacity-60">${l.code}</span>`;
-      b.addEventListener('click',()=>setLanguage(id)); languageMenu.appendChild(b);
-    });
-  }
-  function setLanguage(lang){
-    const elements=document.querySelectorAll('[data-i18n]');
-    if(lang==='tr'){ elements.forEach((el,i)=>el.textContent=trValues[i]??el.textContent); }
-    else { const arr=translations[lang]||translations.en; elements.forEach(el=>{ const k=el.getAttribute('data-i18n'); const i=keyToIndex[k]; if(i!==undefined && arr[i]!==undefined && arr[i] !== '__K47_UNUSED__') el.textContent=arr[i]; }); }
-    const l=langs[lang]||langs.tr; langFlag.textContent=l.flag; langCode.textContent=l.code;
-    document.documentElement.lang=lang;
-    languageMenu.querySelectorAll('.language-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-    localStorage.setItem('mt-language',lang);
-    languageMenu.classList.remove('open');
-    if(window.lucide&&typeof window.lucide.createIcons==='function') window.lucide.createIcons();
-  }
-  window.applyCurrentLanguage=()=>setLanguage(localStorage.getItem('mt-language')||'tr');
-  renderMenu();
-  languageBtn?.addEventListener('click',(e)=>{e.stopPropagation();languageMenu.classList.toggle('open');});
-  document.addEventListener('click',(e)=>{if(!e.target.closest('.language-selector')) languageMenu.classList.remove('open');});
-  window.addEventListener('DOMContentLoaded',()=>setLanguage(localStorage.getItem('mt-language')||'tr'));
-})();
-</script>
-
 <!-- SCRIPTS -->
 <script>
-// Initialize Lucide Icons safely. The page must remain usable if the CDN is unavailable.
-if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    window.lucide.createIcons();
-}
+// Initialize Lucide Icons
+lucide.createIcons();
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -840,132 +787,6 @@ if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
-}
-
-// LC Resonance Simulator Logic
-const lcSliderL = document.getElementById('lc-slider-l');
-const lcSliderC = document.getElementById('lc-slider-c');
-const lcSliderR = document.getElementById('lc-slider-r');
-const lcSliderF = document.getElementById('lc-slider-f');
-
-const lcValL = document.getElementById('lc-val-l');
-const lcValC = document.getElementById('lc-val-c');
-const lcValR = document.getElementById('lc-val-r');
-const lcValF = document.getElementById('lc-val-f');
-
-const lcTelemetryF0 = document.getElementById('lc-telemetry-f0');
-const lcTelemetryQ = document.getElementById('lc-telemetry-q');
-const lcTelemetryZ = document.getElementById('lc-telemetry-z');
-const lcTelemetryBw = document.getElementById('lc-telemetry-bw');
-
-const lcMatchBtn = document.getElementById('lc-match-btn');
-const lcResetBtn = document.getElementById('lc-reset-btn');
-const lcCanvas = document.getElementById('lcResonanceCanvas');
-
-function updateLCSimulator() {
-  if (!lcCanvas) return;
-  const L = parseFloat(lcSliderL.value) * 1e-6; // uH to H
-  const C = parseFloat(lcSliderC.value) * 1e-9; // nF to F
-  const R = parseFloat(lcSliderR.value); // Ohms
-  const f = parseFloat(lcSliderF.value); // Hz
-
-  // Calculated Resonance Values
-  const f0 = 1 / (2 * Math.PI * Math.sqrt(L * C));
-  const w0 = 2 * Math.PI * f0;
-  const Q = (1 / R) * Math.sqrt(L / C);
-  const bw = f0 / Q;
-
-  // Impedance at frequency f
-  const w = 2 * Math.PI * f;
-  const XL = w * L;
-  const XC = 1 / (w * C);
-  const Z = Math.sqrt(R * R + Math.pow(XL - XC, 2));
-
-  // Update UI text displays
-  if (lcValL) lcValL.textContent = lcSliderL.value + ' µH';
-  if (lcValC) lcValC.textContent = lcSliderC.value + ' nF';
-  if (lcValR) lcValR.textContent = lcSliderR.value + ' Ω';
-  if (lcValF) lcValF.textContent = (f >= 1000 ? (f / 1000).toFixed(2) + ' kHz' : f.toFixed(0) + ' Hz');
-
-  if (lcTelemetryF0) lcTelemetryF0.textContent = (f0 >= 1000 ? (f0 / 1000).toFixed(2) + ' kHz' : f0.toFixed(0) + ' Hz');
-  if (lcTelemetryQ) lcTelemetryQ.textContent = Q.toFixed(2);
-  if (lcTelemetryZ) lcTelemetryZ.textContent = Z.toFixed(1) + ' Ω';
-  if (lcTelemetryBw) lcTelemetryBw.textContent = (bw >= 1000 ? (bw / 1000).toFixed(2) + ' kHz' : bw.toFixed(0) + ' Hz');
-
-  // Canvas Drawing
-  const ctx = lcCanvas.getContext('2d');
-  const width = lcCanvas.width = lcCanvas.clientWidth;
-  const height = lcCanvas.height = lcCanvas.clientHeight;
-
-  ctx.clearRect(0, 0, width, height);
-
-  // Grid lines
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-  ctx.lineWidth = 1;
-  for (let x = 0; x < width; x += 40) {
-    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
-  }
-  for (let y = 0; y < height; y += 30) {
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
-  }
-
-  // Draw Response Curve
-  ctx.beginPath();
-  ctx.strokeStyle = '#f59e0b';
-  ctx.lineWidth = 2.5;
-
-  const minF = Math.max(100, f0 * 0.1);
-  const maxF = f0 * 2.5;
-
-  for (let px = 0; px < width; px++) {
-    const curF = minF + (px / width) * (maxF - minF);
-    const curW = 2 * Math.PI * curF;
-    const curXL = curW * L;
-    const curXC = 1 / (curW * C);
-    const curZ = Math.sqrt(R * R + Math.pow(curXL - curXC, 2));
-    const currentRatio = R / curZ; // Normalized 0 to 1 peak at resonance
-
-    const py = height - (currentRatio * (height - 30)) - 15;
-    if (px === 0) ctx.moveTo(px, py);
-    else ctx.lineTo(px, py);
-  }
-  ctx.stroke();
-
-  // Draw current frequency marker
-  const markerX = ((f - minF) / (maxF - minF)) * width;
-  if (markerX >= 0 && markerX <= width) {
-    ctx.strokeStyle = '#06b6d4';
-    ctx.setLineDash([4, 4]);
-    ctx.beginPath();
-    ctx.moveTo(markerX, 0);
-    ctx.lineTo(markerX, height);
-    ctx.stroke();
-    ctx.setLineDash([]);
-  }
-}
-
-if (lcSliderL) {
-  [lcSliderL, lcSliderC, lcSliderR, lcSliderF].forEach(slider => {
-    slider.addEventListener('input', updateLCSimulator);
-  });
-
-  lcMatchBtn.addEventListener('click', () => {
-    const L = parseFloat(lcSliderL.value) * 1e-6;
-    const C = parseFloat(lcSliderC.value) * 1e-9;
-    const f0 = 1 / (2 * Math.PI * Math.sqrt(L * C));
-    lcSliderF.value = Math.min(100000, Math.max(100, f0));
-    updateLCSimulator();
-  });
-
-  lcResetBtn.addEventListener('click', () => {
-    lcSliderL.value = 1450;
-    lcSliderC.value = 140;
-    lcSliderR.value = 12;
-    lcSliderF.value = 11170;
-    updateLCSimulator();
-  });
-
-  updateLCSimulator();
 }
 </script>
 
@@ -1040,11 +861,9 @@ document.addEventListener('DOMContentLoaded', () => {
       amGainNode = audioCtx.createGain();
       
       amOscillator.frequency.setValueAtTime(5, audioCtx.currentTime);
-      amGainNode.gain.setValueAtTime(0.10, audioCtx.currentTime);
+      amGainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
       
-      // Keep the carrier audible while applying a slow AM envelope.
-      amGainNode.connect(mainGainNode.gain);
-      amOscillator.connect(amGainNode);
+      amOscillator.connect(mainGainNode.gain);
       amOscillator.start();
     }
 
@@ -1060,14 +879,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function stopAudio() {
     if (oscillator) {
-      try { oscillator.stop(); } catch (_) {}
+      oscillator.stop();
       oscillator.disconnect();
-      oscillator = null;
     }
     if (amOscillator) {
-      try { amOscillator.stop(); } catch (_) {}
+      amOscillator.stop();
       amOscillator.disconnect();
-      amOscillator = null;
     }
     if (analyzerStatus) {
       analyzerStatus.textContent = "DURDURULDU";
@@ -1189,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Frekans Hesabı T_total = T_width(us) + T_interval(ms)
         let totalTimeSec = (parseFloat(inputs.width.value) / 1000000) + (parseFloat(inputs.interval.value) / 1000);
         let freq = Math.round(1 / totalTimeSec);
-        document.getElementById('pulse-val-freq').innerText = freq + " Hz";
+        document.getElementById('val-freq').innerText = freq + " Hz";
 
         drawSignal();
     }
@@ -1337,8 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#waveform-selector .wave-btn').forEach(b => {
       b.className = "wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all";
     });
-    const sineBtn = document.querySelector('#waveform-selector [data-wave="sine"]');
-    if (sineBtn) sineBtn.className = "wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all";
+    document.querySelector('[data-wave="sine"]').className = "wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all";
     
     normalState();
     updateUI();
@@ -1368,27 +1184,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateUI() {
-    if (valFreq) valFreq.textContent = signalState.freq >= 1000 ? (signalState.freq / 1000).toFixed(1) + ' kHz' : signalState.freq + ' Hz';
-    if (valAmp) valAmp.textContent = signalState.amp.toFixed(1) + ' V';
-    if (valDuty) valDuty.textContent = signalState.duty + '%';
-    if (valPhase) valPhase.textContent = signalState.phase + '°';
-    if (valOffset) valOffset.textContent = signalState.offset.toFixed(1) + ' V';
+    valFreq.textContent = signalState.freq >= 1000 ? (signalState.freq / 1000).toFixed(1) + ' kHz' : signalState.freq + ' Hz';
+    valAmp.textContent = signalState.amp.toFixed(1) + ' V';
+    valDuty.textContent = signalState.duty + '%';
+    valPhase.textContent = signalState.phase + '°';
+    valOffset.textContent = signalState.offset.toFixed(1) + ' V';
 
     const vpp = (signalState.amp * 2).toFixed(1);
-    if (telemVpp) telemVpp.textContent = `${vpp} V`;
+    telemVpp.textContent = `${vpp} V`;
 
     let vrms = 0;
     if (signalState.wave === 'sine') vrms = (signalState.amp / Math.SQRT2);
     else if (signalState.wave === 'square' || signalState.wave === 'pulse') vrms = signalState.amp * Math.sqrt(signalState.duty / 100);
     else if (signalState.wave === 'triangle' || signalState.wave === 'sawtooth') vrms = signalState.amp / Math.sqrt(3);
 
-    if (telemVrms) telemVrms.textContent = `${vrms.toFixed(2)} V`;
+    telemVrms.textContent = `${vrms.toFixed(2)} V`;
 
     const periodMs = (1000 / signalState.freq);
-    if (telemPeriod) telemPeriod.textContent = periodMs < 1 ? `${(periodMs * 1000).toFixed(0)} µs` : `${periodMs.toFixed(2)} ms`;
+    telemPeriod.textContent = periodMs < 1 ? `${(periodMs * 1000).toFixed(0)} µs` : `${periodMs.toFixed(2)} ms`;
 
     const names = { sine: 'Sinüs', square: 'Kare', triangle: 'Üçgen', sawtooth: 'Testere', pulse: 'Pulse' };
-    if (telemType) telemType.textContent = names[signalState.wave];
+    telemType.textContent = names[signalState.wave];
   }
 
   function getWaveValue(t, wave, duty, phaseRad) {
@@ -1476,14 +1292,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script>
-// Final safety net: keep a single component error from making debugging impossible.
-window.addEventListener('error', function (event) {
-    console.error('[MT Detector] JavaScript error:', event.error || event.message);
-});
-window.addEventListener('unhandledrejection', function (event) {
-    console.error('[MT Detector] Promise error:', event.reason);
-});
-</script>
 </body>
 </html>
