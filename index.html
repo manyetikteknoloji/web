@@ -683,3 +683,336 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+<!-- GELİŞTİRİLMİŞ SİNYAL JENERATÖRÜ SİMÜLATÖRÜ -->
+<section class="py-20 relative z-10 bg-slate-950 border-t border-b border-slate-800" id="simulator">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Canlı Simülasyon</span>
+      <h2 class="text-3xl font-extrabold text-white mt-1">Ayarlanabilir Sinyal Jeneratörü</h2>
+      <p class="text-slate-400 text-sm mt-2">Sinyal parametrelerini anlık olarak değiştirerek gerçek zamanlı osiloskop çıktısını gözlemleyin.</p>
+    </div>
+
+    <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-700 shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Sol Panel: Kontroller -->
+        <div class="lg:col-span-5 space-y-5">
+          <!-- Dalga Tipi Seçimi -->
+          <div>
+            <label class="block text-xs font-mono text-slate-300 mb-2">DALGA TİPİ (WAVEFORM)</label>
+            <div class="grid grid-cols-5 gap-1.5" id="waveform-selector">
+              <button data-wave="sine" class="wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all">Sinüs</button>
+              <button data-wave="square" class="wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all">Kare</button>
+              <button data-wave="triangle" class="wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all">Üçgen</button>
+              <button data-wave="sawtooth" class="wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all">Testere</button>
+              <button data-wave="pulse" class="wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all">Pulse</button>
+            </div>
+          </div>
+
+          <!-- Frekans -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+              <span>FREKANS</span>
+              <span class="text-cyan-400 font-bold" id="val-freq">1000 Hz</span>
+            </div>
+            <input id="slider-freq" type="range" min="1" max="100000" value="1000" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"/>
+            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+              <span>1 Hz</span>
+              <span>10 kHz</span>
+              <span>100 kHz</span>
+            </div>
+          </div>
+
+          <!-- Genlik -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+              <span>GENLİK (AMPLITUDE)</span>
+              <span class="text-blue-400 font-bold" id="val-amp">5.0 V</span>
+            </div>
+            <input id="slider-amp" type="range" min="0.1" max="10" step="0.1" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-400"/>
+          </div>
+
+          <!-- Duty Cycle -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+              <span>DUTY CYCLE</span>
+              <span class="text-purple-400 font-bold" id="val-duty">50%</span>
+            </div>
+            <input id="slider-duty" type="range" min="5" max="95" value="50" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400"/>
+          </div>
+
+          <!-- Faz -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+              <span>FAZ (PHASE)</span>
+              <span class="text-amber-400 font-bold" id="val-phase">0°</span>
+            </div>
+            <input id="slider-phase" type="range" min="0" max="360" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"/>
+          </div>
+
+          <!-- Offset -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 mb-1">
+              <span>OFFSET</span>
+              <span class="text-emerald-400 font-bold" id="val-offset">0.0 V</span>
+            </div>
+            <input id="slider-offset" type="range" min="-5" max="5" step="0.1" value="0" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400"/>
+          </div>
+
+          <div class="pt-2">
+            <button id="gen-reset-btn" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs uppercase tracking-wider border border-slate-700 transition-all">
+              Varsayılana Sıfırla
+            </button>
+          </div>
+        </div>
+
+        <!-- Sağ Panel: Osiloskop ve Grafik -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-950 rounded-2xl p-4 border border-cyan-500/30 relative overflow-hidden shadow-inner">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span class="flex items-center gap-2">
+                <i class="w-4 h-4 text-cyan-400" data-lucide="activity"></i>
+                OSİLOSKOP EKRANI
+              </span>
+              <span class="text-emerald-400 flex items-center gap-1 font-bold">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                CANLI SİNYAL
+              </span>
+            </div>
+            
+            <canvas id="generatorScopeCanvas" class="w-full h-72 bg-slate-900/90 rounded-xl"></canvas>
+
+            <!-- Anlık Telemetri Paneli -->
+            <div class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-[11px]">
+              <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">Vpp (Tepeden Tepeye)</div>
+                <div class="text-cyan-400 font-bold" id="telemetry-vpp">10.0 V</div>
+              </div>
+              <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">Vrms (Etkin Deger)</div>
+                <div class="text-blue-400 font-bold" id="telemetry-vrms">3.54 V</div>
+              </div>
+              <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">Periyot (T)</div>
+                <div class="text-purple-400 font-bold" id="telemetry-period">1.00 ms</div>
+              </div>
+              <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">Sinyal Türü</div>
+                <div class="text-emerald-400 font-bold uppercase" id="telemetry-type">Sinüs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sinyal Jeneratörü Mantığı ve Osiloskop Çizim Motoru -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('generatorScopeCanvas');
+  const ctx = canvas.getContext('2d');
+
+  // Input & Button Seçicileri
+  const sliderFreq = document.getElementById('slider-freq');
+  const sliderAmp = document.getElementById('slider-amp');
+  const sliderDuty = document.getElementById('slider-duty');
+  const sliderPhase = document.getElementById('slider-phase');
+  const sliderOffset = document.getElementById('slider-offset');
+  const btnReset = document.getElementById('gen-reset-btn');
+
+  // Gösterge Etiketleri
+  const valFreq = document.getElementById('val-freq');
+  const valAmp = document.getElementById('val-amp');
+  const valDuty = document.getElementById('val-duty');
+  const valPhase = document.getElementById('val-phase');
+  const valOffset = document.getElementById('val-offset');
+
+  // Telemetri Paneli
+  const telemVpp = document.getElementById('telemetry-vpp');
+  const telemVrms = document.getElementById('telemetry-vrms');
+  const telemPeriod = document.getElementById('telemetry-period');
+  const telemType = document.getElementById('telemetry-type');
+
+  // Varsayılan Sinyal Durumu
+  let signalState = {
+    wave: 'sine',
+    freq: 1000,
+    amp: 5.0,
+    duty: 50,
+    phase: 0,
+    offset: 0.0
+  };
+
+  let animationFrameId;
+  let timeOffset = 0;
+
+  // Canvas Boyutlandırması
+  function resizeCanvas() {
+    canvas.width = canvas.parentElement.clientWidth;
+    canvas.height = canvas.parentElement.clientHeight - 80;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Dalga Seçim Butonları Dinleyicisi
+  document.querySelectorAll('#waveform-selector .wave-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('#waveform-selector .wave-btn').forEach(b => {
+        b.className = "wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all";
+      });
+      e.target.className = "wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all";
+      signalState.wave = e.target.getAttribute('data-wave');
+      updateUI();
+    });
+  });
+
+  // Kaydırıcıların Etkileşimi
+  sliderFreq.addEventListener('input', (e) => { signalState.freq = parseFloat(e.target.value); updateUI(); });
+  sliderAmp.addEventListener('input', (e) => { signalState.amp = parseFloat(e.target.value); updateUI(); });
+  sliderDuty.addEventListener('input', (e) => { signalState.duty = parseFloat(e.target.value); updateUI(); });
+  sliderPhase.addEventListener('input', (e) => { signalState.phase = parseFloat(e.target.value); updateUI(); });
+  sliderOffset.addEventListener('input', (e) => { signalState.offset = parseFloat(e.target.value); updateUI(); });
+
+  btnReset.addEventListener('click', () => {
+    signalState = { wave: 'sine', freq: 1000, amp: 5.0, duty: 50, phase: 0, offset: 0.0 };
+    sliderFreq.value = 1000;
+    sliderAmp.value = 5;
+    sliderDuty.value = 50;
+    sliderPhase.value = 0;
+    sliderOffset.value = 0;
+    
+    document.querySelectorAll('#waveform-selector .wave-btn').forEach(b => {
+      b.className = "wave-btn py-2 px-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs border border-slate-800 transition-all";
+    });
+    document.querySelector('[data-wave="sine"]').className = "wave-btn py-2 px-1 rounded-lg bg-cyan-500 text-white font-bold text-xs border border-cyan-400 transition-all";
+    
+    updateUI();
+  });
+
+  // Metinleri ve Telemetriyi Güncelleme
+  function updateUI() {
+    valFreq.textContent = signalState.freq >= 1000 ? (signalState.freq / 1000).toFixed(1) + ' kHz' : signalState.freq + ' Hz';
+    valAmp.textContent = signalState.amp.toFixed(1) + ' V';
+    valDuty.textContent = signalState.duty + '%';
+    valPhase.textContent = signalState.phase + '°';
+    valOffset.textContent = signalState.offset.toFixed(1) + ' V';
+
+    // Telemetri Hesaplamaları
+    const vpp = (signalState.amp * 2).toFixed(1);
+    telemVpp.textContent = `${vpp} V`;
+
+    let vrms = 0;
+    if (signalState.wave === 'sine') vrms = (signalState.amp / Math.SQRT2);
+    else if (signalState.wave === 'square' || signalState.wave === 'pulse') vrms = signalState.amp * Math.sqrt(signalState.duty / 100);
+    else if (signalState.wave === 'triangle' || signalState.wave === 'sawtooth') vrms = signalState.amp / Math.sqrt(3);
+
+    telemVrms.textContent = `${vrms.toFixed(2)} V`;
+
+    const periodMs = (1000 / signalState.freq);
+    telemPeriod.textContent = periodMs < 1 ? `${(periodMs * 1000).toFixed(0)} µs` : `${periodMs.toFixed(2)} ms`;
+
+    const names = { sine: 'Sinüs', square: 'Kare', triangle: 'Üçgen', sawtooth: 'Testere', pulse: 'Pulse' };
+    telemType.textContent = names[signalState.wave];
+  }
+
+  // Dalga Değeri Hesaplama Fonksiyonu
+  function getWaveValue(t, wave, duty, phaseRad) {
+    let angle = (t + phaseRad) % (2 * Math.PI);
+    if (angle < 0) angle += 2 * Math.PI;
+    const normAngle = angle / (2 * Math.PI);
+
+    switch (wave) {
+      case 'sine':
+        return Math.sin(angle);
+      case 'square':
+        return normAngle < (duty / 100) ? 1 : -1;
+      case 'pulse':
+        return normAngle < (duty / 100) ? 1 : 0;
+      case 'triangle':
+        return normAngle < 0.5 ? (4 * normAngle - 1) : (3 - 4 * normAngle);
+      case 'sawtooth':
+        return 2 * normAngle - 1;
+      default:
+        return Math.sin(angle);
+    }
+  }
+
+  // Osiloskop Izgara ve Dalga Çizim Motoru
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerY = height / 2;
+
+    // Grid (Izgara Çizimi)
+    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 1;
+    const gridSpacing = 25;
+
+    for (let x = 0; x < width; x += gridSpacing) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = 0; y < height; y += gridSpacing) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    // Ekseni Vurgula (Merkez Çizgi)
+    ctx.strokeStyle = '#334155';
+    ctx.beginPath();
+    ctx.moveTo(0, centerY);
+    ctx.lineTo(width, centerY);
+    ctx.stroke();
+
+    // Sinyal Çizimi
+    ctx.strokeStyle = '#22d3ee';
+    ctx.lineWidth = 2.5;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = '#06b6d4';
+    ctx.beginPath();
+
+    const phaseRad = (signalState.phase * Math.PI) / 180;
+    const scaleY = (height / 24); // Ölçekleme faktörü
+    const displayCycles = 3; // Ekranda görüntülenecek dalga periyodu sayısı
+
+    for (let x = 0; x < width; x++) {
+      const t = (x / width) * (displayCycles * 2 * Math.PI) + timeOffset;
+      const rawVal = getWaveValue(t, signalState.wave, signalState.duty, phaseRad);
+      
+      // Genlik ve Offset Uygulaması
+      const signalVal = (rawVal * signalState.amp) + signalState.offset;
+      const y = centerY - (signalVal * scaleY);
+
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Zaman Akışı
+    timeOffset += 0.05;
+
+    animationFrameId = requestAnimationFrame(draw);
+  }
+
+  updateUI();
+  draw();
+});
+</script>
