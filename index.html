@@ -138,6 +138,7 @@
 <a class="hover:text-cyan-400 transition-colors" href="#features"><span data-i18n="k3">Özellikler</span></a>
 <a class="hover:text-cyan-400 transition-colors" href="#technology"><span data-i18n="k4">Teknolojimiz</span></a>
 <a class="hover:text-cyan-400 transition-colors" href="#simulator"><span data-i18n="k5">MT Simülatör</span></a>
+<a class="hover:text-purple-400 transition-colors" href="#audio-analyzer">Ses Analizörü</a>
 <a class="hover:text-cyan-400 transition-colors" href="#lc-calculator"><span data-i18n="k72">LC Hesaplayıcı</span></a>
 <a class="hover:text-cyan-400 transition-colors" href="#contact"><span data-i18n="k6">İletişim</span></a>
 </nav>
@@ -170,6 +171,7 @@
 <a class="mobile-link py-2 border-b border-slate-800" href="#features"><span data-i18n="k3">Özellikler</span></a>
 <a class="mobile-link py-2 border-b border-slate-800" href="#technology"><span data-i18n="k4">Teknolojimiz</span></a>
 <a class="mobile-link py-2 border-b border-slate-800" href="#simulator"><span data-i18n="k5">MT Simülatör</span></a>
+<a class="mobile-link py-2 border-b border-slate-800" href="#audio-analyzer">Ses Analizörü</a>
 <a class="mobile-link py-2 border-b border-slate-800" href="#lc-calculator"><span data-i18n="k72">LC Hesaplayıcı</span></a>
 <a class="mobile-link py-2" href="#contact"><span data-i18n="k6">İletişim</span></a>
 <div class="mt-2 pt-3 border-t border-slate-800">
@@ -525,6 +527,117 @@
             <div class="mt-3 py-2 px-3 rounded-lg bg-slate-900 border border-slate-800 flex justify-between items-center text-xs font-mono transition-colors" id="target-badge">
               <span class="text-slate-400"><span data-i18n="k53">DURUM:</span></span>
               <span class="text-cyan-400 font-bold" id="target-status"><span data-i18n="k54">NORMAL MANYETİK ALAN</span></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SES & FREKANS ANALİZÖRÜ -->
+<section class="py-20 relative z-10 bg-slate-950/70 border-t border-b border-slate-800" id="audio-analyzer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <span class="text-xs font-bold uppercase tracking-widest text-purple-400">Canlı Ses Analizi</span>
+      <h2 class="text-3xl font-extrabold text-white mt-1">Ses &amp; Frekans Analizörü</h2>
+      <p class="text-slate-400 text-sm mt-2 max-w-2xl mx-auto">
+        RF frekansını ses frekansına dönüştürün, sinyali dinleyin ve gerçek zamanlı osiloskop üzerinde izleyin.
+      </p>
+    </div>
+
+    <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-purple-500/20 shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Sol kontrol paneli -->
+        <div class="lg:col-span-5 space-y-5">
+
+          <div class="bg-slate-950/80 rounded-2xl p-5 border border-slate-800">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono text-slate-400">RF FREKANSI</span>
+              <span id="rfFreqDisplay" class="text-cyan-400 font-bold font-mono">11.10 kHz</span>
+            </div>
+
+            <input id="freqSlider" type="range" min="100" max="100000" value="11100"
+                   class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+
+            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-2">
+              <span>100 Hz</span>
+              <span>50 kHz</span>
+              <span>100 kHz</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-950/80 rounded-2xl p-4 border border-slate-800 text-center">
+              <div class="text-[10px] text-slate-500 font-mono mb-1">SES FREKANSI</div>
+              <div id="audioFreqDisplay" class="text-xl font-extrabold text-purple-400 font-mono">800 Hz</div>
+            </div>
+
+            <div class="bg-slate-950/80 rounded-2xl p-4 border border-slate-800 text-center">
+              <div class="text-[10px] text-slate-500 font-mono mb-1">DURUM</div>
+              <div id="analyzer-status" class="text-sm text-slate-400 font-bold">HAZIR</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-slate-300 mb-2">DALGA TİPİ</label>
+            <select id="waveType"
+                    class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-purple-400 text-sm font-mono">
+              <option value="sine">Sinüs</option>
+              <option value="square">Kare</option>
+              <option value="triangle">Üçgen</option>
+              <option value="sawtooth">Testere</option>
+            </select>
+          </div>
+
+          <button id="amToggleBtn" type="button"
+                  class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 p-2.5 rounded-xl text-xs font-mono font-bold transition-all">
+            AM Mod: KAPALI
+          </button>
+
+          <button id="playBtn" type="button"
+                  class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-sm uppercase tracking-wider shadow-lg shadow-purple-500/25 active:scale-98 transition-all flex items-center justify-center gap-2">
+            <span id="playBtnText">▶ Sinyali Dinle</span>
+          </button>
+
+          <div class="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-[11px] text-slate-400 font-mono leading-relaxed">
+            <span class="text-amber-400 font-bold">Not:</span>
+            Ses üretimi tarayıcının ses izni nedeniyle yalnızca butona bastığınızda başlatılır.
+          </div>
+        </div>
+
+        <!-- Sağ osiloskop -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-950 rounded-2xl p-4 border border-purple-500/30 relative overflow-hidden shadow-inner">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+              <span class="flex items-center gap-2">
+                <i class="w-4 h-4 text-purple-400" data-lucide="audio-waveform"></i>
+                SES SİNYALİ / OSİLOSKOP
+              </span>
+              <span class="text-emerald-400 flex items-center gap-1 font-bold">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                LIVE
+              </span>
+            </div>
+
+            <canvas id="oscilloscope" class="w-full h-64 bg-slate-900/90 rounded-xl"></canvas>
+
+            <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 font-mono text-[11px]">
+              <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">RF</div>
+                <div id="rfFreqDisplay2" class="text-cyan-400 font-bold">11.10 kHz</div>
+              </div>
+              <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">AUDIO</div>
+                <div id="audioFreqDisplay2" class="text-purple-400 font-bold">800 Hz</div>
+              </div>
+              <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 text-center">
+                <div class="text-slate-500">DÖNÜŞÜM</div>
+                <div class="text-emerald-400 font-bold">÷ 13.875</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1186,7 +1299,7 @@ function initMTLanguage(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMTLanguage);else initMTLanguage();
 </script>
 
-<!-- SES ANALİZÖRÜ: ses.txt kodu -->
+<!-- SES ANALİZÖRÜ JAVASCRIPT -->
 <!-- Gelişmiş Frekans & Ses Analizörü Mantığı -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -1681,6 +1794,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // İlk değerleri göster
   updateFrequencies();
 
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const mainRf = document.getElementById('rfFreqDisplay');
+  const mainAudio = document.getElementById('audioFreqDisplay');
+  const rf2 = document.getElementById('rfFreqDisplay2');
+  const audio2 = document.getElementById('audioFreqDisplay2');
+
+  function syncAudioDisplays() {
+    if (mainRf && rf2) rf2.textContent = mainRf.textContent;
+    if (mainAudio && audio2) audio2.textContent = mainAudio.textContent;
+  }
+
+  syncAudioDisplays();
+  const observer = new MutationObserver(syncAudioDisplays);
+  if (mainRf) observer.observe(mainRf, {childList:true, characterData:true, subtree:true});
+  if (mainAudio) observer.observe(mainAudio, {childList:true, characterData:true, subtree:true});
 });
 </script>
 </body>
