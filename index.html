@@ -1613,108 +1613,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function drawOscilloscope() {
 
-    if (!isPlaying) {
+    // Osiloskop her zaman canlı görünür.
+    // Ses kapalıysa seçilen AUDIO frekansına göre simüle edilmiş dalga,
+    // ses açıksa Web Audio Analyser verisi çizilir.
+    requestAnimationFrame(drawOscilloscope);
 
-      canvasCtx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-      return;
-    }
-
-
-    requestAnimationFrame(
-      drawOscilloscope
-    );
-
-
-    const bufferLength =
-      analyser.frequencyBinCount;
-
-
-    const dataArray =
-      new Uint8Array(bufferLength);
-
-
-    analyser.getByteTimeDomainData(
-      dataArray
-    );
-
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerY = height / 2;
 
     // Arka plan
-    canvasCtx.fillStyle =
-      '#0f172a';
+    canvasCtx.fillStyle = '#0f172a';
+    canvasCtx.fillRect(0, 0, width, height);
 
-    canvasCtx.fillRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    // Orta eksen
+    canvasCtx.strokeStyle = '#334155';
+    canvasCtx.lineWidth = 1;
+    canvasCtx.beginPath();
+    canvasCtx.moveTo(0, centerY);
+    canvasCtx.lineTo(width, centerY);
+    canvasCtx.stroke();
 
-
-    // Dalga çizgisi
     canvasCtx.lineWidth = 2;
-
-    canvasCtx.strokeStyle =
-      '#00f2c3';
-
+    canvasCtx.strokeStyle = '#00f2c3';
     canvasCtx.beginPath();
 
+    if (isPlaying && analyser) {
+      // Gerçek ses sinyali
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      analyser.getByteTimeDomainData(dataArray);
 
-    const sliceWidth =
-      canvas.width * 1.0 /
-      bufferLength;
+      const sliceWidth = width / bufferLength;
+      let x = 0;
 
-
-    let x = 0;
-
-
-    for (
-      let i = 0;
-      i < bufferLength;
-      i++
-    ) {
-
-      const v =
-        dataArray[i] / 128.0;
-
-
-      const y =
-        v * canvas.height / 2;
-
-
-      if (i === 0) {
-
-        canvasCtx.moveTo(
-          x,
-          y
-        );
-
-      } else {
-
-        canvasCtx.lineTo(
-          x,
-          y
-        );
+      for (let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = v * centerY;
+        if (i === 0) canvasCtx.moveTo(x, y);
+        else canvasCtx.lineTo(x, y);
+        x += sliceWidth;
       }
+    } else {
+      // Ses başlamadan önce de seçilen frekansa göre canlı sinyal göster
+      const inputHz = parseFloat(slider.value) || 11100;
+      const audioHz = inputHz / SCALE_FACTOR;
+      const wave = waveTypeSelect.value || 'sine';
+      const phaseSpeed = Math.max(0.015, Math.min(0.12, audioHz / 8000));
+      drawPreviewPhase = (drawPreviewPhase + phaseSpeed);
 
+      const cycles = 3;
+      const amplitude = height * 0.32;
 
-      x += sliceWidth;
+      for (let x = 0; x < width; x++) {
+        const phase = (x / width) * cycles * Math.PI * 2 + drawPreviewPhase;
+        const n = (phase / (Math.PI * 2)) % 1;
+        let value;
+
+        switch (wave) {
+          case 'square': value = n < 0.5 ? 1 : -1; break;
+          case 'triangle': value = 1 - 4 * Math.abs(Math.round(n) - n); break;
+          case 'sawtooth': value = 2 * n - 1; break;
+          default: value = Math.sin(phase);
+        }
+
+        const y = centerY - value * amplitude;
+        if (x === 0) canvasCtx.moveTo(x, y);
+        else canvasCtx.lineTo(x, y);
+      }
     }
-
-
-    canvasCtx.lineTo(
-      canvas.width,
-      canvas.height / 2
-    );
-
 
     canvasCtx.stroke();
   }
+
+  let drawPreviewPhase = 0;
 
 
   // --------------------------------------------------
