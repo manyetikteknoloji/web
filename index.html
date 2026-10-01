@@ -1378,7 +1378,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const btn=document.getElementById('products-nav-btn'),menu=document.getElementById('products-nav-menu'),wrap=document.getElementById('products-nav-wrap');
  if(btn&&menu){btn.addEventListener('click',e=>{e.stopPropagation();menu.classList.toggle('open');btn.setAttribute('aria-expanded',menu.classList.contains('open')?'true':'false');});menu.addEventListener('click',e=>{if(e.target.closest('a')){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}});document.addEventListener('click',e=>{if(wrap&&!wrap.contains(e.target)){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}});}
  const mobileGroup=document.getElementById('mobile-products-group');if(mobileGroup){mobileGroup.addEventListener('toggle',()=>{const summary=mobileGroup.querySelector('summary span.float-right');if(summary)summary.textContent=mobileGroup.open?'−':'＋';});}
- const lang=localStorage.getItem('mt-detector-language')||'tr';renderDetectorCatalog(lang);refreshProductNav(lang);
+ const lang=localStorage.getItem('mt-detector-language')||((navigator.language||'en').split('-')[0]);renderDetectorCatalog(MT_LANGS.some(x=>x[0]===lang)?lang:'en');refreshProductNav(MT_LANGS.some(x=>x[0]===lang)?lang:'en');
 });
 </script>
 
@@ -1389,7 +1389,63 @@ const MT_LANGS=[['tr','🇹🇷','Türkçe'],['en','🇬🇧','English'],['zh','
 
 Object.assign(window.MT_ALL_TRANSLATIONS, {"audioMenu": {"tr": "Ses Analizörü", "en": "Audio Analyzer", "zh": "音频分析仪", "hi": "ऑडियो विश्लेषक", "es": "Analizador de audio", "ar": "محلل الصوت", "fr": "Analyseur audio", "bn": "অডিও বিশ্লেষক", "pt": "Analisador de Áudio", "id": "Penganalisis Audio", "ur": "آڈیو اینالائزر", "ru": "Аудиоанализатор", "de": "Audio-Analysator", "ja": "オーディオアナライザー"}, "audioBadge": {"tr": "Canlı Ses Analizi", "en": "Live Audio Analysis", "zh": "实时音频分析", "hi": "लाइव ऑडियो विश्लेषण", "es": "Análisis de audio en vivo", "ar": "تحليل صوتي مباشر", "fr": "Analyse audio en direct", "bn": "লাইভ অডিও বিশ্লেষণ", "pt": "Análise de Áudio ao Vivo", "id": "Analisis Audio Langsung", "ur": "لائیو آڈیو تجزیہ", "ru": "Анализ аудио в реальном времени", "de": "Live-Audioanalyse", "ja": "ライブ音声分析"}, "audioTitle": {"tr": "Ses & Frekans Analizörü", "en": "Audio & Frequency Analyzer", "zh": "音频与频率分析仪", "hi": "ऑडियो और फ़्रीक्वेंसी विश्लेषक", "es": "Analizador de audio y frecuencia", "ar": "محلل الصوت والتردد", "fr": "Analyseur audio et fréquence", "bn": "অডিও ও ফ্রিকোয়েন্সি বিশ্লেষক", "pt": "Analisador de Áudio e Frequência", "id": "Penganalisis Audio & Frekuensi", "ur": "آڈیو اور فریکوئنسی اینالائزر", "ru": "Аудио- и частотный анализатор", "de": "Audio- & Frequenzanalysator", "ja": "音声・周波数アナライザー"}, "audioDesc": {"tr": "RF frekansını ses frekansına dönüştürün, sinyali dinleyin ve gerçek zamanlı osiloskop üzerinde izleyin.", "en": "Convert RF frequency to audio frequency, listen to the signal, and monitor it on the real-time oscilloscope.", "zh": "将 RF 频率转换为音频频率，聆听信号并在实时示波器上观察。", "hi": "RF फ़्रीक्वेंसी को ऑडियो फ़्रीक्वेंसी में बदलें, सिग्नल सुनें और रीयल-टाइम ऑसिलोस्कोप पर देखें।", "es": "Convierte la frecuencia RF en audio, escucha la señal y obsérvala en el osciloscopio en tiempo real.", "ar": "حوّل تردد RF إلى تردد صوتي، واستمع إلى الإشارة وراقبها على راسم الإشارة في الوقت الفعلي.", "fr": "Convertissez la fréquence RF en fréquence audio, écoutez le signal et observez-le sur l’oscilloscope en temps réel.", "bn": "RF ফ্রিকোয়েন্সিকে অডিও ফ্রিকোয়েন্সিতে রূপান্তর করুন, সিগন্যাল শুনুন এবং রিয়েল-টাইম অসিলোস্কোপে দেখুন।", "pt": "Converta a frequência RF em áudio, ouça o sinal e monitore-o no osciloscópio em tempo real.", "id": "Ubah frekuensi RF menjadi frekuensi audio, dengarkan sinyal dan pantau pada osiloskop secara real-time.", "ur": "RF فریکوئنسی کو آڈیو فریکوئنسی میں تبدیل کریں، سگنل سنیں اور ریئل ٹائم آسیلوسکوپ پر دیکھیں۔", "ru": "Преобразуйте RF-частоту в звуковую, прослушивайте сигнал и наблюдайте его на осциллографе в реальном времени.", "de": "Wandeln Sie die RF-Frequenz in Audiofrequenz um, hören Sie das Signal und beobachten Sie es am Echtzeit-Oszilloskop.", "ja": "RF周波数を音声周波数に変換し、信号を聴きながらリアルタイムオシロスコープで確認できます。"}, "rfFrequency": {"tr": "RF FREKANSI", "en": "RF FREQUENCY", "zh": "RF 频率", "hi": "RF फ़्रीक्वेंसी", "es": "FRECUENCIA RF", "ar": "تردد RF", "fr": "FRÉQUENCE RF", "bn": "RF ফ্রিকোয়েন্সি", "pt": "FREQUÊNCIA RF", "id": "FREKUENSI RF", "ur": "RF فریکوئنسی", "ru": "RF-ЧАСТОТА", "de": "RF-FREQUENZ", "ja": "RF周波数"}, "audioFrequency": {"tr": "SES FREKANSI", "en": "AUDIO FREQUENCY", "zh": "音频频率", "hi": "ऑडियो फ़्रीक्वेंसी", "es": "FRECUENCIA DE AUDIO", "ar": "التردد الصوتي", "fr": "FRÉQUENCE AUDIO", "bn": "অডিও ফ্রিকোয়েন্সি", "pt": "FREQUÊNCIA DE ÁUDIO", "id": "FREKUENSI AUDIO", "ur": "آڈیو فریکوئنسی", "ru": "ЗВУКОВАЯ ЧАСТОТА", "de": "AUDIOFREQUENZ", "ja": "音声周波数"}, "statusLabel": {"tr": "DURUM", "en": "STATUS", "zh": "状态", "hi": "स्थिति", "es": "ESTADO", "ar": "الحالة", "fr": "ÉTAT", "bn": "অবস্থা", "pt": "STATUS", "id": "STATUS", "ur": "حالت", "ru": "СТАТУС", "de": "STATUS", "ja": "状態"}, "ready": {"tr": "HAZIR", "en": "READY", "zh": "就绪", "hi": "तैयार", "es": "LISTO", "ar": "جاهز", "fr": "PRÊT", "bn": "প্রস্তুত", "pt": "PRONTO", "id": "SIAP", "ur": "تیار", "ru": "ГОТОВ", "de": "BEREIT", "ja": "準備完了"}, "waveTypeLabel": {"tr": "DALGA TİPİ", "en": "WAVEFORM", "zh": "波形", "hi": "तरंगरूप", "es": "FORMA DE ONDA", "ar": "نوع الموجة", "fr": "FORME D’ONDE", "bn": "তরঙ্গের ধরন", "pt": "FORMA DE ONDA", "id": "BENTUK GELOMBANG", "ur": "موج کی قسم", "ru": "ФОРМА СИГНАЛА", "de": "WELLENFORM", "ja": "波形"}, "sine": {"tr": "Sinüs", "en": "Sine", "zh": "正弦波", "hi": "साइन", "es": "Seno", "ar": "جيبية", "fr": "Sinusoïde", "bn": "সাইন", "pt": "Senoidal", "id": "Sinus", "ur": "سائن", "ru": "Синус", "de": "Sinus", "ja": "正弦波"}, "square": {"tr": "Kare", "en": "Square", "zh": "方波", "hi": "स्क्वेयर", "es": "Cuadrada", "ar": "مربعة", "fr": "Carrée", "bn": "স্কোয়ার", "pt": "Quadrada", "id": "Persegi", "ur": "مربع", "ru": "Прямоугольная", "de": "Rechteck", "ja": "矩形波"}, "triangle": {"tr": "Üçgen", "en": "Triangle", "zh": "三角波", "hi": "त्रिभुज", "es": "Triangular", "ar": "مثلثة", "fr": "Triangle", "bn": "ত্রিভুজ", "pt": "Triangular", "id": "Segitiga", "ur": "مثلث", "ru": "Треугольная", "de": "Dreieck", "ja": "三角波"}, "sawtooth": {"tr": "Testere", "en": "Sawtooth", "zh": "锯齿波", "hi": "सॉटूथ", "es": "Diente de sierra", "ar": "منشارية", "fr": "Dent de scie", "bn": "স-টুথ", "pt": "Dente de serra", "id": "Gigi gergaji", "ur": "سا ٹوتھ", "ru": "Пилообразная", "de": "Sägezahn", "ja": "のこぎり波"}, "amOff": {"tr": "AM Mod: KAPALI", "en": "AM Mode: OFF", "zh": "AM 模式：关闭", "hi": "AM मोड: बंद", "es": "Modo AM: DESACTIVADO", "ar": "وضع AM: متوقف", "fr": "Mode AM : DÉSACTIVÉ", "bn": "AM মোড: বন্ধ", "pt": "Modo AM: DESATIVADO", "id": "Mode AM: NONAKTIF", "ur": "AM موڈ: بند", "ru": "AM: ВЫКЛ.", "de": "AM-Modus: AUS", "ja": "AMモード：オフ"}, "amOn": {"tr": "AM Mod: AÇIK", "en": "AM Mode: ON", "zh": "AM 模式：开启", "hi": "AM मोड: चालू", "es": "Modo AM: ACTIVADO", "ar": "وضع AM: يعمل", "fr": "Mode AM : ACTIVÉ", "bn": "AM মোড: চালু", "pt": "Modo AM: ATIVADO", "id": "Mode AM: AKTIF", "ur": "AM موڈ: آن", "ru": "AM: ВКЛ.", "de": "AM-Modus: EIN", "ja": "AMモード：オン"}, "listen": {"tr": "▶ Sinyali Dinle", "en": "▶ Listen to Signal", "zh": "▶ 监听信号", "hi": "▶ सिग्नल सुनें", "es": "▶ Escuchar señal", "ar": "▶ استمع إلى الإشارة", "fr": "▶ Écouter le signal", "bn": "▶ সিগন্যাল শুনুন", "pt": "▶ Ouvir sinal", "id": "▶ Dengarkan Sinyal", "ur": "▶ سگنل سنیں", "ru": "▶ Прослушать сигнал", "de": "▶ Signal anhören", "ja": "▶ 信号を聴く"}, "stop": {"tr": "■ Sinyali Durdur", "en": "■ Stop Signal", "zh": "■ 停止信号", "hi": "■ सिग्नल रोकें", "es": "■ Detener señal", "ar": "■ إيقاف الإشارة", "fr": "■ Arrêter le signal", "bn": "■ সিগন্যাল বন্ধ করুন", "pt": "■ Parar sinal", "id": "■ Hentikan Sinyal", "ur": "■ سگنل روکیں", "ru": "■ Остановить сигнал", "de": "■ Signal stoppen", "ja": "■ 信号停止"}, "note": {"tr": "Not: Ses üretimi tarayıcının ses izni nedeniyle yalnızca butona bastığınızda başlatılır.", "en": "Note: Audio starts only after you press the button because of browser audio permissions.", "zh": "注意：由于浏览器的音频权限，只有按下按钮后才会开始播放声音。", "hi": "नोट: ब्राउज़र की ऑडियो अनुमति के कारण बटन दबाने के बाद ही ध्वनि शुरू होती है।", "es": "Nota: el audio comienza solo al pulsar el botón debido a los permisos del navegador.", "ar": "ملاحظة: يبدأ الصوت بعد الضغط على الزر فقط بسبب أذونات المتصفح.", "fr": "Remarque : le son démarre uniquement après avoir appuyé sur le bouton en raison des autorisations du navigateur.", "bn": "নোট: ব্রাউজারের অডিও অনুমতির কারণে বোতামে চাপ দেওয়ার পরেই শব্দ শুরু হয়।", "pt": "Nota: o áudio começa somente após pressionar o botão devido às permissões do navegador.", "id": "Catatan: audio dimulai hanya setelah tombol ditekan karena izin audio browser.", "ur": "نوٹ: براؤزر کی آڈیو اجازت کی وجہ سے بٹن دبانے کے بعد ہی آواز شروع ہوتی ہے۔", "ru": "Примечание: звук запускается только после нажатия кнопки из-за разрешений браузера.", "de": "Hinweis: Die Audioausgabe startet aufgrund der Browser-Berechtigungen erst nach dem Drücken der Taste.", "ja": "注：ブラウザの音声権限により、ボタンを押した後にのみ音声が開始されます。"}, "scopeTitle": {"tr": "SES SİNYALİ / OSİLOSKOP", "en": "AUDIO SIGNAL / OSCILLOSCOPE", "zh": "音频信号 / 示波器", "hi": "ऑडियो सिग्नल / ऑसिलोस्कोप", "es": "SEÑAL DE AUDIO / OSCILOSCOPIO", "ar": "الإشارة الصوتية / راسم الإشارة", "fr": "SIGNAL AUDIO / OSCILLOSCOPE", "bn": "অডিও সিগন্যাল / অসিলোস্কোপ", "pt": "SINAL DE ÁUDIO / OSCILOSCÓPIO", "id": "SINYAL AUDIO / OSILOSKOP", "ur": "آڈیو سگنل / آسیلوسکوپ", "ru": "АУДИОСИГНАЛ / ОСЦИЛЛОСКОП", "de": "AUDIOSIGNAL / OSZILLOSKOP", "ja": "音声信号 / オシロスコープ"}, "live": {"tr": "CANLI", "en": "LIVE", "zh": "实时", "hi": "लाइव", "es": "EN VIVO", "ar": "مباشر", "fr": "EN DIRECT", "bn": "লাইভ", "pt": "AO VIVO", "id": "LANGSUNG", "ur": "لائیو", "ru": "В РЕАЛЬНОМ ВРЕМЕНИ", "de": "LIVE", "ja": "ライブ"}, "conversion": {"tr": "DÖNÜŞÜM", "en": "CONVERSION", "zh": "转换", "hi": "रूपांतरण", "es": "CONVERSIÓN", "ar": "تحويل", "fr": "CONVERSION", "bn": "রূপান্তর", "pt": "CONVERSÃO", "id": "KONVERSI", "ur": "تبدیلی", "ru": "ПРЕОБРАЗОВАНИЕ", "de": "UMWANDLUNG", "ja": "変換"}, "rfShort": {"tr": "RF", "en": "RF", "zh": "RF", "hi": "RF", "es": "RF", "ar": "RF", "fr": "RF", "bn": "RF", "pt": "RF", "id": "RF", "ur": "RF", "ru": "RF", "de": "RF", "ja": "RF"}, "audioShort": {"tr": "SES", "en": "AUDIO", "zh": "音频", "hi": "ऑडियो", "es": "AUDIO", "ar": "صوت", "fr": "AUDIO", "bn": "অডিও", "pt": "ÁUDIO", "id": "AUDIO", "ur": "آڈیو", "ru": "АУДИО", "de": "AUDIO", "ja": "音声"}});
 
-function initMTLanguage(){
+
+async function detectMTInitialLanguage(){
+  // Kullanıcının daha önce seçtiği dil her zaman önceliklidir.
+  const saved = localStorage.getItem('mt-detector-language');
+  if(saved && MT_LANGS.some(x => x[0] === saved)) return saved;
+
+  // Önce tarayıcı diliyle hızlı bir başlangıç yapılır.
+  const browserLang = (navigator.language || navigator.userLanguage || 'tr').toLowerCase();
+  const browserMap = {
+    tr:'tr', en:'en', zh:'zh', hi:'hi', es:'es', ar:'ar',
+    fr:'fr', bn:'bn', pt:'pt', id:'id', ur:'ur', ru:'ru',
+    de:'de', ja:'ja'
+  };
+  const browserBase = browserLang.split('-')[0];
+  let detected = browserMap[browserBase] || 'en';
+
+  // Mümkünse IP ülkesini tespit edip ülkeye göre dili seç.
+  // API ulaşılamazsa tarayıcı diliyle devam edilir.
+  try {
+    const response = await fetch('https://ipapi.co/json/', {
+      method:'GET',
+      headers:{'Accept':'application/json'},
+      cache:'no-store'
+    });
+    if(response.ok){
+      const data = await response.json();
+      const country = String(data.country_code || '').toUpperCase();
+
+      const countryLanguage = {
+        TR:'tr',
+        US:'en', CA:'en', GB:'en', AU:'en', NZ:'en',
+        CN:'zh', TW:'zh', HK:'zh', MO:'zh',
+        IN:'hi', NP:'hi',
+        ES:'es', MX:'es', AR:'es', CO:'es', CL:'es', PE:'es',
+        SA:'ar', AE:'ar', QA:'ar', KW:'ar', BH:'ar', OM:'ar',
+        JO:'ar', IQ:'ar', EG:'ar', MA:'ar', DZ:'ar', TN:'ar',
+        FR:'fr', BE:'fr', LU:'fr', MC:'fr',
+        BD:'bn',
+        PT:'pt', BR:'pt',
+        ID:'id',
+        PK:'ur',
+        RU:'ru', BY:'ru', KZ:'ru',
+        DE:'de', AT:'de', CH:'de',
+        JP:'ja'
+      };
+
+      if(countryLanguage[country]) detected = countryLanguage[country];
+    }
+  } catch(e) {
+    // Ağ/API başarısızsa browser dili kullanılır.
+  }
+
+  localStorage.setItem('mt-detector-language', detected);
+  return detected;
+}
+
+async function initMTLanguage(){
  const langBtn=document.getElementById('language-btn');
  const langMenu=document.getElementById('language-menu');
  const mobileLangBtn=document.getElementById('mobile-language-btn');
@@ -1480,6 +1536,7 @@ function initMTLanguage(){
  });
 
  window.applyCurrentLanguage = refreshLanguageUI;
+ await detectMTInitialLanguage();
  refreshLanguageUI();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMTLanguage);else initMTLanguage();
