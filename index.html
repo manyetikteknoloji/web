@@ -719,6 +719,8 @@
 </section>
 
 <!-- LC REZONANS CALCULATOR SECTION -->
+      
+
 <section class="py-20 relative z-10 bg-slate-900/60 border-t border-b border-slate-800" id="lc-calculator">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
@@ -811,6 +813,87 @@
       </div>
     </div>
   </div>
+
+      <!-- LC REZONANS GÖRSELİ: HESAPLAYICININ ALTINDA -->
+      <div class="max-w-4xl mx-auto mt-8 rounded-2xl border border-cyan-500/20 bg-slate-950/60 overflow-hidden">
+        <details>
+          <summary class="cursor-pointer px-5 py-4 text-sm font-bold text-cyan-400 hover:text-cyan-300">
+            LC Rezonans devresi ve rezonans grafiğini göster
+          </summary>
+
+          <div class="p-5 border-t border-slate-800">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+
+              <div class="rounded-xl bg-slate-900/80 border border-slate-800 p-4">
+                <div class="text-xs text-slate-400 mb-2">LC Rezonans Devresi</div>
+                <svg viewBox="0 0 300 150" class="w-full h-36" aria-label="LC rezonans devresi">
+                  <line x1="15" y1="35" x2="70" y2="35"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <path d="M70 35 c8 -18 16 18 24 0 c8 -18 16 18 24 0 c8 -18 16 18 24 0"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <line x1="142" y1="35" x2="185" y2="35"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <line x1="185" y1="35" x2="185" y2="68"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <line x1="173" y1="68" x2="197" y2="68"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <line x1="173" y1="78" x2="197" y2="78"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <line x1="185" y1="78" x2="185" y2="105"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <text x="93" y="18" font-size="11" fill="currentColor">L = <tspan id="lc-svg-l">---</tspan></text>
+                  <text x="202" y="78" font-size="11" fill="currentColor">C = <tspan id="lc-svg-c">---</tspan></text>
+                  <text x="15" y="130" font-size="11" fill="currentColor">
+                    f₀ = 1 / (2π√LC)
+                  </text>
+                </svg>
+              </div>
+
+              <div class="rounded-xl bg-slate-900/80 border border-slate-800 p-4">
+                <div class="text-xs text-slate-400 mb-2">Rezonans Frekansı</div>
+                <svg viewBox="0 0 300 150" class="w-full h-36" aria-label="LC rezonans grafiği">
+                  <line x1="30" y1="125" x2="280" y2="125"
+                        stroke="currentColor" fill="none" stroke-width="1.5"/>
+                  <line x1="30" y1="125" x2="30" y2="25"
+                        stroke="currentColor" fill="none" stroke-width="1.5"/>
+                  <path d="M35 117 C95 116 125 108 145 62
+                           C154 40 161 35 168 62
+                           C185 108 215 116 275 117"
+                        stroke="currentColor" fill="none" stroke-width="3"/>
+                  <line id="lc-peak-line" x1="162" y1="35" x2="162" y2="129"
+                        stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <text id="lc-peak-label" x="162" y="28" text-anchor="middle"
+                        font-size="10" font-weight="700" fill="currentColor">
+                    f₀ = ---
+                  </text>
+                  <circle id="lc-peak-dot" cx="162" cy="35" r="3.5"
+                          fill="currentColor"/>
+                  <text x="145" y="143" font-size="10" fill="currentColor">
+                    f₀ rezonans
+                  </text>
+                  <text x="32" y="20" font-size="9" fill="currentColor">
+                    Genlik
+                  </text>
+                </svg>
+              </div>
+
+            </div>
+
+            <div class="mt-4 rounded-xl border border-slate-800 bg-slate-900/50 p-4">
+              <div class="text-sm font-semibold text-white mb-1">
+                LC Rezonans
+              </div>
+              <p class="text-xs text-slate-400">
+                Bobin (L) ve kondansatör (C) değerlerine bağlı rezonans frekansını
+                gösterir.
+              </p>
+              <div class="text-sm font-mono text-cyan-400 mt-2">
+                f₀ = 1 / (2π√LC)
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
 </section>
 
 
@@ -834,6 +917,27 @@
         <button type="button" class="circuit-tab" data-circuit="rl-lp">RL Low Pass</button>
         <button type="button" class="circuit-tab" data-circuit="rl-hp">RL High Pass</button>
         <button type="button" class="circuit-tab" data-circuit="rlc">RLC</button>
+        <button type="button" class="circuit-tab" data-circuit="band-pass">Band Pass</button>
+        <button type="button" class="circuit-tab" data-circuit="band-stop">Band Stop / Notch</button>
+      </div>
+
+      <!-- SEÇİLEN HESAPLAMANIN GÖRSELİ -->
+      <div id="circuit-visual" class="mb-8 hidden">
+        <div class="rounded-2xl border border-cyan-500/20 bg-slate-950/70 p-4 sm:p-5">
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <div>
+              <div id="circuit-visual-title" class="text-cyan-400 font-bold text-sm"></div>
+              <div class="text-[11px] text-slate-500 mt-1">Devre şeması ve frekans karakteristiği</div>
+            </div>
+            <button type="button" id="close-circuit-visual"
+                    class="text-xs px-3 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white">
+              Gizle
+            </button>
+          </div>
+          <div id="circuit-visual-content" class="rounded-xl bg-slate-900/80 border border-slate-800 p-3"></div>
+          <div id="circuit-visual-desc" class="text-xs text-slate-400 mt-3"></div>
+          <div id="circuit-visual-formula" class="text-[11px] text-cyan-400 font-mono mt-2"></div>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -925,6 +1029,11 @@
     </div>
   </div>
 </section>
+
+<div class="max-w-4xl mx-auto mt-5">
+  
+</div>
+
 
 <!-- CONTACT & FOOTER SECTION -->
 <section class="py-24 relative z-10" id="contact">
@@ -1382,10 +1491,85 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (periodSec >= 1e-3) resPeriod.textContent = (periodSec * 1e3).toFixed(2) + " ms";
       else resPeriod.textContent = (periodSec * 1e6).toFixed(2) + " µs";
     }
+
+    // LC görselini, hesaplamada kullanılan gerçek L / C ve f₀ ile güncelle.
+    updateLCVisual();
+  }
+
+  function formatLCVisual(value, type) {
+    if (!isFinite(value) || value <= 0) return "---";
+
+    if (type === "L") {
+      if (value >= 1) return value.toFixed(3) + " H";
+      if (value >= 1e-3) return (value * 1e3).toFixed(3) + " mH";
+      if (value >= 1e-6) return (value * 1e6).toFixed(2) + " µH";
+      if (value >= 1e-9) return (value * 1e9).toFixed(2) + " nH";
+      return value.toExponential(2) + " H";
+    }
+
+    if (type === "C") {
+      if (value >= 1) return value.toFixed(3) + " F";
+      if (value >= 1e-3) return (value * 1e3).toFixed(3) + " mF";
+      if (value >= 1e-6) return (value * 1e6).toFixed(3) + " µF";
+      if (value >= 1e-9) return (value * 1e9).toFixed(3) + " nF";
+      if (value >= 1e-12) return (value * 1e12).toFixed(2) + " pF";
+      return value.toExponential(2) + " F";
+    }
+
+    if (type === "F") {
+      if (value >= 1e9) return (value / 1e9).toFixed(3) + " GHz";
+      if (value >= 1e6) return (value / 1e6).toFixed(3) + " MHz";
+      if (value >= 1e3) return (value / 1e3).toFixed(3) + " kHz";
+      return value.toFixed(2) + " Hz";
+    }
+
+    return String(value);
+  }
+
+  function updateLCVisual() {
+    const lInput = document.getElementById('input-l');
+    const cInput = document.getElementById('input-c');
+    const fInput = document.getElementById('input-f');
+
+    let l = parseFloat(lInput?.value || 0) * parseFloat(document.getElementById('unit-l')?.value || 1);
+    let c = parseFloat(cInput?.value || 0) * parseFloat(document.getElementById('unit-c')?.value || 1);
+    let f = 0;
+
+    // Hangi değer hesaplanıyorsa gerçek hesaplanan değeri kullan.
+    if (calcMode === 'freq') {
+      if (l > 0 && c > 0) f = 1 / (2 * Math.PI * Math.sqrt(l * c));
+    } else if (calcMode === 'inductance') {
+      f = parseFloat(fInput?.value || 0) * parseFloat(document.getElementById('unit-f')?.value || 1);
+      if (f > 0 && c > 0) l = 1 / (4 * Math.PI * Math.PI * f * f * c);
+    } else if (calcMode === 'capacitance') {
+      f = parseFloat(fInput?.value || 0) * parseFloat(document.getElementById('unit-f')?.value || 1);
+      if (f > 0 && l > 0) c = 1 / (4 * Math.PI * Math.PI * f * f * l);
+    }
+
+    const lEl = document.getElementById('lc-svg-l');
+    const cEl = document.getElementById('lc-svg-c');
+    const fEl = document.getElementById('lc-peak-label');
+
+    if (lEl) lEl.textContent = formatLCVisual(l, "L");
+    if (cEl) cEl.textContent = formatLCVisual(c, "C");
+    if (fEl) fEl.textContent = "f₀ = " + formatLCVisual(f, "F");
+
+    // Tepe noktasını ve dikey işareti aynı rezonans tepesinin üzerine getir.
+    const dot = document.getElementById('lc-peak-dot');
+    const line = document.getElementById('lc-peak-line');
+    if (dot) {
+      dot.setAttribute('cx', '162');
+      dot.setAttribute('cy', '35');
+    }
+    if (line) {
+      line.setAttribute('x1', '162');
+      line.setAttribute('x2', '162');
+    }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     calculateLC();
+    updateLCVisual();
   });
 </script>
 
@@ -2346,3 +2530,129 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const visual = document.getElementById('circuit-visual');
+  const title = document.getElementById('circuit-visual-title');
+  const content = document.getElementById('circuit-visual-content');
+  const desc = document.getElementById('circuit-visual-desc');
+  const formula = document.getElementById('circuit-visual-formula');
+  const closeBtn = document.getElementById('close-circuit-visual');
+
+  const common = 'stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+
+  const visuals = {
+    rc: {
+      title: 'RC',
+      desc: 'Direnç ve kondansatör ile zaman sabiti ve temel RC davranışını inceleyin.',
+      formula: 'τ = R × C',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <line x1="15" y1="30" x2="65" y2="30" ${common} stroke-width="3"/>
+        <rect x="65" y="21" width="55" height="18" rx="3" ${common} stroke-width="3"/>
+        <line x1="120" y1="30" x2="180" y2="30" ${common} stroke-width="3"/>
+        <line x1="180" y1="30" x2="180" y2="60" ${common} stroke-width="3"/>
+        <line x1="168" y1="60" x2="192" y2="60" ${common} stroke-width="3"/>
+        <line x1="168" y1="69" x2="192" y2="69" ${common} stroke-width="3"/>
+        <text x="82" y="16" font-size="10" fill="currentColor">R</text><text x="198" y="67" font-size="10" fill="currentColor">C</text>
+      </svg>`
+    },
+    rl: {
+      title: 'RL',
+      desc: 'Direnç ve bobin ile zaman sabiti ve indüktif davranışı inceleyin.',
+      formula: 'τ = L / R',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <line x1="15" y1="30" x2="65" y2="30" ${common} stroke-width="3"/>
+        <rect x="65" y="21" width="55" height="18" rx="3" ${common} stroke-width="3"/>
+        <path d="M120 30 c8 -16 16 16 24 0 c8 -16 16 16 24 0 c8 -16 16 16 24 0" ${common} stroke-width="3"/>
+        <text x="82" y="16" font-size="10" fill="currentColor">R</text><text x="145" y="16" font-size="10" fill="currentColor">L</text>
+      </svg>`
+    },
+    'rc-lp': {
+      title: 'RC Low Pass',
+      desc: 'Düşük frekansları geçirir, yüksek frekansları zayıflatır.',
+      formula: 'fc = 1 / (2πRC)',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <line x1="10" y1="28" x2="45" y2="28" ${common} stroke-width="3"/><rect x="45" y="19" width="55" height="18" rx="3" ${common} stroke-width="3"/><line x1="100" y1="28" x2="150" y2="28" ${common} stroke-width="3"/>
+        <line x1="150" y1="28" x2="150" y2="60" ${common} stroke-width="3"/><line x1="138" y1="60" x2="162" y2="60" ${common} stroke-width="3"/><line x1="138" y1="69" x2="162" y2="69" ${common} stroke-width="3"/>
+        <line x1="185" y1="105" x2="285" y2="105" ${common}/><line x1="185" y1="105" x2="185" y2="48" ${common}/><path d="M187 52 C215 52 230 57 246 70 C261 82 274 95 283 101" ${common} stroke-width="3"/>
+        <text x="240" y="117" font-size="9" fill="currentColor">fc</text>
+      </svg>`
+    },
+    'rc-hp': {
+      title: 'RC High Pass',
+      desc: 'Yüksek frekansları geçirir, düşük frekansları zayıflatır.',
+      formula: 'fc = 1 / (2πRC)',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <line x1="10" y1="28" x2="45" y2="28" ${common} stroke-width="3"/><line x1="45" y1="17" x2="45" y2="39" ${common} stroke-width="3"/><line x1="54" y1="17" x2="54" y2="39" ${common} stroke-width="3"/><line x1="54" y1="28" x2="100" y2="28" ${common} stroke-width="3"/>
+        <line x1="185" y1="105" x2="285" y2="105" ${common}/><line x1="185" y1="105" x2="185" y2="48" ${common}/><path d="M187 100 C205 88 222 72 240 61 C255 53 270 50 283 50" ${common} stroke-width="3"/>
+        <text x="225" y="117" font-size="9" fill="currentColor">fc</text>
+      </svg>`
+    },
+    'rl-lp': {
+      title: 'RL Low Pass',
+      desc: 'RL devrede düşük frekansları geçirir, yüksek frekansları zayıflatır.',
+      formula: 'fc = R / (2πL)',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <rect x="30" y="18" width="55" height="18" rx="3" ${common} stroke-width="3"/><path d="M85 27 c8 -16 16 16 24 0 c8 -16 16 16 24 0 c8 -16 16 16 24 0" ${common} stroke-width="3"/>
+        <line x1="10" y1="105" x2="285" y2="105" ${common}/><line x1="10" y1="105" x2="10" y2="48" ${common}/><path d="M12 52 C80 53 120 59 155 70 C200 84 235 94 283 101" ${common} stroke-width="3"/>
+      </svg>`
+    },
+    'rl-hp': {
+      title: 'RL High Pass',
+      desc: 'RL devrede yüksek frekansları geçirir, düşük frekansları zayıflatır.',
+      formula: 'fc = R / (2πL)',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <path d="M20 28 c8 -16 16 16 24 0 c8 -16 16 16 24 0 c8 -16 16 16 24 0" ${common} stroke-width="3"/><rect x="100" y="19" width="55" height="18" rx="3" ${common} stroke-width="3"/>
+        <line x1="10" y1="105" x2="285" y2="105" ${common}/><line x1="10" y1="105" x2="10" y2="48" ${common}/><path d="M12 100 C55 86 95 69 135 59 C180 50 230 49 283 49" ${common} stroke-width="3"/>
+      </svg>`
+    },
+    'rlc': {
+      title: 'RLC',
+      desc: 'Direnç, bobin ve kondansatörün birlikte oluşturduğu devre davranışını inceleyin.',
+      formula: 'f₀ = 1 / (2π√LC)',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <rect x="20" y="18" width="45" height="18" rx="3" ${common} stroke-width="3"/><path d="M65 27 c8 -16 16 16 24 0 c8 -16 16 16 24 0" ${common} stroke-width="3"/>
+        <line x1="113" y1="27" x2="150" y2="27" ${common} stroke-width="3"/><line x1="150" y1="27" x2="150" y2="58" ${common} stroke-width="3"/><line x1="138" y1="58" x2="162" y2="58" ${common} stroke-width="3"/><line x1="138" y1="67" x2="162" y2="67" ${common} stroke-width="3"/>
+      </svg>`
+    },
+    'band-pass': {
+      title: 'Band Pass',
+      desc: 'Belirli bir frekans aralığını geçirir.',
+      formula: 'fL < f < fH',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <line x1="15" y1="105" x2="285" y2="105" ${common}/><line x1="15" y1="105" x2="15" y2="45" ${common}/><path d="M18 100 C70 100 90 98 108 88 C125 78 130 52 150 42 C170 52 175 78 192 88 C210 98 235 100 282 100" ${common} stroke-width="3"/>
+        <text x="112" y="117" font-size="9" fill="currentColor">fL</text><text x="184" y="117" font-size="9" fill="currentColor">fH</text>
+      </svg>`
+    },
+    'band-stop': {
+      title: 'Band Stop / Notch',
+      desc: 'Belirli bir frekans bandını bastırır, diğerlerini geçirir.',
+      formula: 'f0 = bastırılan frekans',
+      svg: `<svg viewBox="0 0 300 120" class="w-full h-28">
+        <line x1="15" y1="105" x2="285" y2="105" ${common}/><line x1="15" y1="105" x2="15" y2="45" ${common}/><path d="M18 52 C85 52 110 55 128 64 C140 72 145 100 150 102 C155 100 160 72 172 64 C190 55 220 52 282 52" ${common} stroke-width="3"/>
+        <text x="143" y="117" font-size="9" fill="currentColor">f0</text>
+      </svg>`
+    }
+  };
+
+  function showVisual(key) {
+    const v = visuals[key];
+    if (!v) return;
+    title.textContent = v.title;
+    content.innerHTML = v.svg;
+    desc.textContent = v.desc;
+    formula.textContent = v.formula;
+    visual.classList.remove('hidden');
+  }
+
+  document.querySelectorAll('.circuit-tab').forEach(btn => {
+    btn.addEventListener('click', () => showVisual(btn.dataset.circuit));
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', () => visual.classList.add('hidden'));
+
+  // İlk açılışta RC görseli görünür.
+  showVisual('rc');
+});
+</script>
