@@ -294,7 +294,7 @@
 <a class="hover:text-cyan-400 transition-colors" href="#simulator"><span data-i18n="k5">MT Simülatör</span></a>
 <a data-i18n="audioMenu" class="hover:text-purple-400 transition-colors" href="#audio-analyzer">Ses Analizörü</a>
 <a class="hover:text-cyan-400 transition-colors" href="#lc-calculator"><span data-i18n="k72">LC Hesaplayıcı</span></a>
-<a class="hover:text-cyan-400 transition-colors" href="#circuit-calculators">Devre Hesaplayıcıları</a>
+<a data-i18n="cc_nav" class="hover:text-cyan-400 transition-colors" href="#circuit-calculators">Devre Hesaplayıcıları</a>
 <a class="hover:text-cyan-400 transition-colors" href="#contact"><span data-i18n="k6">İletişim</span></a>
 </nav>
 
@@ -329,7 +329,7 @@
 <a class="mobile-link py-2 border-b border-slate-800" href="#simulator"><span data-i18n="k5">MT Simülatör</span></a>
 <a class="mobile-link py-2 border-b border-slate-800" href="#audio-analyzer"><span data-i18n="audioMenu">Ses Analizörü</span></a>
 <a class="mobile-link py-2 border-b border-slate-800" href="#lc-calculator"><span data-i18n="k72">LC Hesaplayıcı</span></a>
-<a class="mobile-link py-2 border-b border-slate-800" href="#circuit-calculators">Devre Hesaplayıcıları</a>
+<a data-i18n="cc_nav" class="mobile-link py-2 border-b border-slate-800" href="#circuit-calculators">Devre Hesaplayıcıları</a>
 <a class="mobile-link py-2" href="#contact"><span data-i18n="k6">İletişim</span></a>
 <div class="mt-2 pt-3 border-t border-slate-800">
 <div class="language-selector w-full">
@@ -1007,10 +1007,10 @@
 <section class="py-20 relative z-10 bg-slate-950/70 border-t border-b border-slate-800" id="circuit-calculators">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
-      <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">ELEKTRONİK HESAPLAMA ARAÇLARI</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">RC / RL / RLC ve Filtre Hesaplayıcıları</h2>
+      <span data-i18n="cc_heading" class="text-xs font-bold uppercase tracking-widest text-cyan-400">ELEKTRONİK HESAPLAMA ARAÇLARI</span>
+      <h2 data-i18n="cc_title" class="text-3xl sm:text-4xl font-extrabold text-white mt-2">RC / RL / RLC ve Filtre Hesaplayıcıları</h2>
       <p class="text-slate-400 text-sm mt-3 max-w-3xl mx-auto">
-        Kesim frekansı, zaman sabiti, empedans ve rezonans gibi temel elektronik hesaplamalarını anında yapın.
+        <span data-i18n="cc_desc">Kesim frekansı, zaman sabiti, empedans ve rezonans gibi temel elektronik hesaplamalarını anında yapın.</span>
       </p>
     </div>
 
@@ -1033,11 +1033,11 @@
           <div class="flex items-center justify-between gap-3 mb-3">
             <div>
               <div id="circuit-visual-title" class="text-cyan-400 font-bold text-sm"></div>
-              <div class="text-[11px] text-slate-500 mt-1">Devre şeması ve frekans karakteristiği</div>
+              <div data-i18n="cc_visual_sub" class="text-[11px] text-slate-500 mt-1">Devre şeması ve frekans karakteristiği</div>
             </div>
             <button type="button" id="close-circuit-visual"
                     class="text-xs px-3 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white">
-              Gizle
+              <span data-i18n="cc_hide">Gizle</span>
             </button>
           </div>
           <div id="circuit-visual-content" class="rounded-xl bg-slate-900/80 border border-slate-800 p-3"></div>
@@ -1050,7 +1050,7 @@
         <div class="lg:col-span-7 space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-semibold text-slate-300 mb-1">Direnç (R)</label>
+              <label data-i18n="cc_resistance" class="block text-xs font-semibold text-slate-300 mb-1">Direnç (R)</label>
               <div class="flex gap-2">
                 <input id="cc-r" type="number" step="any" value="10" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-cyan-400 text-sm font-mono">
                 <select id="cc-r-unit" class="px-3 py-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 text-sm font-semibold">
@@ -1060,7 +1060,7 @@
             </div>
 
             <div id="cc-c-group">
-              <label class="block text-xs font-semibold text-slate-300 mb-1">Kapasitans (C)</label>
+              <label data-i18n="cc_capacitance" class="block text-xs font-semibold text-slate-300 mb-1">Kapasitans (C)</label>
               <div class="flex gap-2">
                 <input id="cc-c" type="number" step="any" value="100" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-cyan-400 text-sm font-mono">
                 <select id="cc-c-unit" class="px-3 py-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 text-sm font-semibold">
@@ -1070,7 +1070,7 @@
             </div>
 
             <div id="cc-l-group" class="hidden">
-              <label class="block text-xs font-semibold text-slate-300 mb-1">İndüktans (L)</label>
+              <label data-i18n="cc_inductance" class="block text-xs font-semibold text-slate-300 mb-1">İndüktans (L)</label>
               <div class="flex gap-2">
                 <input id="cc-l" type="number" step="any" value="10" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-cyan-400 text-sm font-mono">
                 <select id="cc-l-unit" class="px-3 py-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 text-sm font-semibold">
@@ -1080,7 +1080,7 @@
             </div>
 
             <div id="cc-f-group" class="hidden">
-              <label class="block text-xs font-semibold text-slate-300 mb-1">Test / Sinyal Frekansı</label>
+              <label data-i18n="cc_testfreq" class="block text-xs font-semibold text-slate-300 mb-1">Test / Sinyal Frekansı</label>
               <div class="flex gap-2">
                 <input id="cc-f" type="number" step="any" value="1000" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-cyan-400 text-sm font-mono">
                 <select id="cc-f-unit" class="px-3 py-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 text-sm font-semibold">
@@ -1091,26 +1091,26 @@
           </div>
 
           <div class="p-4 rounded-2xl bg-slate-950/70 border border-slate-800">
-            <div class="text-xs text-slate-500 font-mono mb-1">FORMÜL</div>
+            <div data-i18n="cc_formula" class="text-xs text-slate-500 font-mono mb-1">FORMÜL</div>
             <div id="cc-formula" class="text-cyan-400 font-bold font-mono text-sm">τ = R × C</div>
           </div>
 
           <div class="flex flex-wrap gap-3">
-            <button type="button" id="cc-reset" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs">ÖRNEK DEĞERLERE DÖN</button>
+            <button type="button" id="cc-reset" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-bold text-xs"><span data-i18n="cc_reset">ÖRNEK DEĞERLERE DÖN</span></button>
           </div>
         </div>
 
         <div class="lg:col-span-5">
           <div class="h-full min-h-[250px] bg-gradient-to-br from-slate-950 to-slate-900 rounded-2xl border border-cyan-500/30 p-6 flex flex-col justify-center text-center shadow-inner">
-            <div class="text-xs text-slate-500 font-mono uppercase tracking-wider" id="cc-result-label">ZAMAN SABİTİ (τ)</div>
+            <div data-i18n="cc_timeconstant" class="text-xs text-slate-500 font-mono uppercase tracking-wider" id="cc-result-label">ZAMAN SABİTİ (τ)</div>
             <div id="cc-result" class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 my-4 font-mono">1.00 s</div>
             <div class="grid grid-cols-2 gap-3 mt-2">
               <div class="bg-slate-950 rounded-xl p-3 border border-slate-800">
-                <div class="text-[10px] text-slate-500">Kesim / Rezonans</div>
+                <div data-i18n="cc_cutres" class="text-[10px] text-slate-500">Kesim / Rezonans</div>
                 <div id="cc-secondary" class="text-sm text-purple-400 font-bold font-mono">159.15 Hz</div>
               </div>
               <div class="bg-slate-950 rounded-xl p-3 border border-slate-800">
-                <div class="text-[10px] text-slate-500">Durum</div>
+                <div data-i18n="cc_status" class="text-[10px] text-slate-500">Durum</div>
                 <div id="cc-status" class="text-sm text-emerald-400 font-bold">HAZIR</div>
               </div>
             </div>
@@ -2534,7 +2534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 /* RC / RL / RLC / FILTER CALCULATOR */
 document.addEventListener('DOMContentLoaded', () => {
-  const $ = id => document.getElementById(id);
+  const $ = id => document.getElementById(id);\n  const ccT = key => { const d=window.MT_ALL_TRANSLATIONS||{}; const l=localStorage.getItem('mt-detector-language')||'tr'; return (d[key]&&d[key][l])||(d[key]&&d[key].tr)||''; };
   const inputs = ['cc-r','cc-r-unit','cc-c','cc-c-unit','cc-l','cc-l-unit','cc-f','cc-f-unit'];
   let mode = 'rc';
 
@@ -2587,36 +2587,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const C = parseFloat($('cc-c').value) * parseFloat($('cc-c-unit').value);
     const L = parseFloat($('cc-l').value) * parseFloat($('cc-l-unit').value);
     const F = parseFloat($('cc-f').value) * parseFloat($('cc-f-unit').value);
-    let result = NaN, secondary = NaN, label='', formula='', secondaryLabel='Kesim / Rezonans';
+    let result = NaN, secondary = NaN, label='', formula='', secondaryLabel=ccT('cc_cutres');
 
     if (mode === 'rc') {
       result = R*C; secondary = 1/(2*Math.PI*R*C);
-      label='ZAMAN SABİTİ (τ)'; formula='τ = R × C'; secondaryLabel='Kesim Frekansı';
+      label=ccT('cc_timeconstant'); formula='τ = R × C'; secondaryLabel=ccT('cc_cutoff');
       $('cc-result').textContent=fmt(result,'time'); $('cc-secondary').textContent=fmt(secondary);
     } else if (mode === 'rl') {
       result = L/R; secondary = R/(2*Math.PI*L);
-      label='ZAMAN SABİTİ (τ)'; formula='τ = L / R'; secondaryLabel='Kesim Frekansı';
+      label=ccT('cc_timeconstant'); formula='τ = L / R'; secondaryLabel=ccT('cc_cutoff');
       $('cc-result').textContent=fmt(result,'time'); $('cc-secondary').textContent=fmt(secondary);
     } else if (mode === 'rc-lp' || mode === 'rc-hp') {
       result = 1/(2*Math.PI*R*C); secondary = R*C;
-      label = mode === 'rc-lp' ? 'RC LOW PASS fₙ' : 'RC HIGH PASS fₙ';
-      formula='fₙ = 1 / (2πRC)'; secondaryLabel='Zaman Sabiti';
+      label = mode === 'rc-lp' ? ccT('cc_rclp') : ccT('cc_rchp');
+      formula='fₙ = 1 / (2πRC)'; secondaryLabel=ccT('cc_timeconstant');
       $('cc-result').textContent=fmt(result); $('cc-secondary').textContent=fmt(secondary,'time');
     } else if (mode === 'rl-lp' || mode === 'rl-hp') {
       result = R/(2*Math.PI*L); secondary = L/R;
-      label = mode === 'rl-lp' ? 'RL LOW PASS fₙ' : 'RL HIGH PASS fₙ';
-      formula='fₙ = R / (2πL)'; secondaryLabel='Zaman Sabiti';
+      label = mode === 'rl-lp' ? ccT('cc_rllp') : ccT('cc_rlhp');
+      formula='fₙ = R / (2πL)'; secondaryLabel=ccT('cc_timeconstant');
       $('cc-result').textContent=fmt(result); $('cc-secondary').textContent=fmt(secondary,'time');
     } else if (mode === 'rlc') {
       result = 1/(2*Math.PI*Math.sqrt(L*C)); secondary = 2*Math.PI*result*L;
-      label='RLC REZONANS FREKANSI (f₀)'; formula='f₀ = 1 / (2π√(LC))'; secondaryLabel='Endüktif Reaktans (Xₗ)';
+      label=ccT('cc_rlcres'); formula='f₀ = 1 / (2π√(LC))'; secondaryLabel=ccT('cc_reactance');
       $('cc-result').textContent=fmt(result); $('cc-secondary').textContent=fmt(secondary,'ohm');
     }
 
     $('cc-result-label').textContent=label;
     $('cc-formula').textContent=formula;
     const valid = Number.isFinite(result) && result > 0 && (mode==='rlc' ? L>0 && C>0 : R>0 && (mode.startsWith('rl') ? L>0 : C>0));
-    $('cc-status').textContent = valid ? 'HESAPLANDI' : 'DEĞERLERİ KONTROL EDİN';
+    $('cc-status').textContent = valid ? ccT('cc_calculated') : ccT('cc_checkvalues');
     $('cc-status').className = valid ? 'text-sm text-emerald-400 font-bold' : 'text-sm text-amber-400 font-bold';
     if (!valid) { $('cc-result').textContent='---'; $('cc-secondary').textContent='---'; }
   }
@@ -2634,6 +2634,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+(function(){
+const langs=['tr','en','zh','hi','es','ar','fr','bn','pt','id','ur','ru','de','ja'];
+const rows={
+cc_nav:['Devre Hesaplayıcıları','Circuit Calculators','电路计算器','सर्किट कैलकुलेटर','Calculadoras de circuitos','حاسبات الدوائر','Calculateurs de circuits','সার্কিট ক্যালকুলেটর','Calculadoras de circuitos','Kalkulator Sirkuit','سرکٹ کیلکولیٹر','Калькуляторы цепей','Schaltungsrechner','回路計算機'],
+cc_heading:['ELEKTRONİK HESAPLAMA ARAÇLARI','ELECTRONICS CALCULATORS','电子计算工具','इलेक्ट्रॉनिक्स कैलकुलेटर','HERRAMIENTAS DE CÁLCULO ELECTRÓNICO','أدوات حساب الإلكترونيات','OUTILS DE CALCUL ÉLECTRONIQUE','ইলেকট্রনিক্স ক্যালকুলেটর','FERRAMENTAS DE CÁLCULO ELETRÔNICO','KALKULATOR ELEKTRONIKA','الیکٹرانکس کیلکولیٹر','КАЛЬКУЛЯТОРЫ ЭЛЕКТРОНИКИ','ELEKTRONIK-RECHNER','電子回路計算ツール'],
+cc_title:['RC / RL / RLC ve Filtre Hesaplayıcıları','RC / RL / RLC & Filter Calculators','RC / RL / RLC 与滤波器计算器','RC / RL / RLC और फ़िल्टर कैलकुलेटर','Calculadoras RC / RL / RLC y filtros','حاسبات RC / RL / RLC والمرشحات','Calculateurs RC / RL / RLC et filtres','RC / RL / RLC ও ফিল্টার ক্যালকুলেটর','Calculadoras RC / RL / RLC e filtros','Kalkulator RC / RL / RLC & Filter','RC / RL / RLC اور فلٹر کیلکولیٹر','Калькуляторы RC / RL / RLC и фильтров','RC-/RL-/RLC- und Filterrechner','RC / RL / RLC・フィルター計算機'],
+cc_desc:['Kesim frekansı, zaman sabiti, empedans ve rezonans gibi temel elektronik hesaplamalarını anında yapın.','Calculate cutoff frequency, time constant, impedance and resonance instantly.','即时计算截止频率、时间常数、阻抗和谐振。','कटऑफ़ फ़्रीक्वेंसी, टाइम कॉन्स्टेंट, इम्पीडेंस और रेज़ोनेंस की गणना करें।','Calcule al instante frecuencia de corte, constante de tiempo, impedancia y resonancia.','احسب فورًا تردد القطع وثابت الزمن والممانعة والرنين.','Calculez instantanément la fréquence de coupure, la constante de temps, l’impédance et la résonance.','কাটঅফ ফ্রিকোয়েন্সি, টাইম কনস্ট্যান্ট, ইম্পিড্যান্স ও রেজোন্যান্স হিসাব করুন।','Calcule instantaneamente frequência de corte, constante de tempo, impedância e ressonância.','Hitung frekuensi cutoff, konstanta waktu, impedansi, dan resonansi secara instan.','کٹ آف فریکوئنسی، ٹائم کانسٹنٹ، امپیڈنس اور ریزوننس فوراً حساب کریں۔','Мгновенно рассчитывайте частоту среза, постоянную времени, импеданс и резонанс.','Berechnen Sie Grenzfrequenz, Zeitkonstante, Impedanz und Resonanz sofort.','遮断周波数、時定数、インピーダンス、共振をすぐに計算します。'],
+cc_visual_sub:['Devre şeması ve frekans karakteristiği','Circuit diagram and frequency response','电路图和频率特性','सर्किट आरेख और आवृत्ति प्रतिक्रिया','Diagrama del circuito y respuesta en frecuencia','مخطط الدائرة واستجابة التردد','Schéma du circuit et réponse en fréquence','সার্কিট ডায়াগ্রাম ও ফ্রিকোয়েন্সি রেসপন্স','Diagrama do circuito e resposta em frequência','Diagram rangkaian dan respons frekuensi','سرکٹ ڈایاگرام اور فریکوئنسی رسپانس','Схема цепи и частотная характеристика','Schaltplan und Frequenzgang','回路図と周波数特性'],
+cc_hide:['Gizle','Hide','隐藏','छिपाएँ','Ocultar','إخفاء','Masquer','লুকান','Ocultar','Sembunyikan','چھپائیں','Скрыть','Ausblenden','非表示'],
+cc_resistance:['Direnç (R)','Resistance (R)','电阻 (R)','प्रतिरोध (R)','Resistencia (R)','المقاومة (R)','Résistance (R)','রোধ (R)','Resistência (R)','Resistansi (R)','مزاحمت (R)','Сопротивление (R)','Widerstand (R)','抵抗 (R)'],
+cc_capacitance:['Kapasitans (C)','Capacitance (C)','电容 (C)','धारिता (C)','Capacitancia (C)','السعة (C)','Capacité (C)','ক্যাপাসিট্যান্স (C)','Capacitância (C)','Kapasitansi (C)','کیپیسیٹینس (C)','Ёмкость (C)','Kapazität (C)','静電容量 (C)'],
+cc_inductance:['İndüktans (L)','Inductance (L)','电感 (L)','प्रेरकत्व (L)','Inductancia (L)','الحث (L)','Inductance (L)','ইন্ডাক্ট্যান্স (L)','Indutância (L)','Induktansi (L)','انڈکٹنس (L)','Индуктивность (L)','Induktivität (L)','インダクタンス (L)'],
+cc_testfreq:['Test / Sinyal Frekansı','Test / Signal Frequency','测试/信号频率','टेस्ट / सिग्नल फ़्रीक्वेंसी','Frecuencia de prueba / señal','تردد الاختبار / الإشارة','Fréquence de test / signal','পরীক্ষা / সংকেত ফ্রিকোয়েন্সি','Frequência de teste / sinal','Frekuensi Uji / Sinyal','ٹیسٹ / سگنل فریکوئنسی','Тестовая частота / частота сигнала','Test-/Signalfrequenz','テスト / 信号周波数'],
+cc_formula:['FORMÜL','FORMULA','公式','सूत्र','FÓRMULA','الصيغة','FORMULE','সূত্র','FÓRMULA','RUMUS','فارمولا','ФОРМУЛА','FORMEL','数式'],
+cc_reset:['ÖRNEK DEĞERLERE DÖN','RESET TO EXAMPLE VALUES','恢复示例值','उदाहरण मान रीसेट करें','RESTABLECER VALORES DE EJEMPLO','إعادة القيم الافتراضية','RÉINITIALISER LES VALEURS','উদাহরণ মানে ফিরুন','REDEFINIR VALORES DE EXEMPLO','KEMBALI KE NILAI CONTOH','مثالی اقدار بحال کریں','СБРОСИТЬ ПРИМЕРЫ','BEISPIELWERTE ZURÜCKSETZEN','初期値に戻す'],
+cc_timeconstant:['ZAMAN SABİTİ (τ)','TIME CONSTANT (τ)','时间常数 (τ)','टाइम कॉन्स्टेंट (τ)','CONSTANTE DE TIEMPO (τ)','ثابت الزمن (τ)','CONSTANTE DE TEMPS (τ)','টাইম কনস্ট্যান্ট (τ)','CONSTANTE DE TEMPO (τ)','KONSTANTA WAKTU (τ)','ٹائم کانسٹنٹ (τ)','ПОСТОЯННАЯ ВРЕМЕНИ (τ)','ZEITKONSTANTE (τ)','時定数 (τ)'],
+cc_cutres:['Kesim / Rezonans','Cutoff / Resonance','截止 / 谐振','कटऑफ़ / रेज़ोनेंस','Corte / resonancia','القطع / الرنين','Coupure / résonance','কাটঅফ / রেজোন্যান্স','Corte / ressonância','Cutoff / Resonansi','کٹ آف / ریزوننس','Срез / резонанс','Grenzfrequenz / Resonanz','遮断 / 共振'],
+cc_status:['Durum','Status','状态','स्थिति','Estado','الحالة','État','অবস্থা','Estado','Status','حالت','Статус','Status','状態'],
+cc_cutoff:['Kesim Frekansı','Cutoff Frequency','截止频率','कटऑफ़ फ़्रीक्वेंसी','Frecuencia de corte','تردد القطع','Fréquence de coupure','কাটঅফ ফ্রিকোয়েন্সি','Frequência de corte','Frekuensi Cutoff','کٹ آف فریکوئنسی','Частота среза','Grenzfrequenz','遮断周波数'],
+cc_calculated:['HESAPLANDI','CALCULATED','已计算','गणना पूरी हुई','CALCULADO','تم الحساب','CALCULÉ','হিসাব সম্পন্ন','CALCULADO','TERHITUNG','حساب مکمل','РАССЧИТАНО','BERECHNET','計算済み'],
+cc_checkvalues:['DEĞERLERİ KONTROL EDİN','CHECK VALUES','检查数值','मान जाँचें','COMPRUEBE LOS VALORES','تحقق من القيم','VÉRIFIEZ LES VALEURS','মান পরীক্ষা করুন','VERIFIQUE OS VALORES','PERIKSA NILAI','اقدار چیک کریں','ПРОВЕРЬТЕ ЗНАЧЕНИЯ','WERTE PRÜFEN','値を確認してください'],
+cc_rclp:['RC ALÇAK GEÇİREN fₙ','RC LOW-PASS fₙ','RC 低通 fₙ','RC लो-पास fₙ','RC PASO BAJO fₙ','RC منخفض التمرير fₙ','RC PASSE-BAS fₙ','RC লো-পাস fₙ','RC PASSA-BAIXA fₙ','RC LOW PASS fₙ','RC لو پاس fₙ','RC ФНЧ fₙ','RC-TIEFPASS fₙ','RCローパス fₙ'],
+cc_rchp:['RC YÜKSEK GEÇİREN fₙ','RC HIGH-PASS fₙ','RC 高通 fₙ','RC हाई-पास fₙ','RC PASO ALTO fₙ','RC عالي التمرير fₙ','RC PASSE-HAUT fₙ','RC হাই-পাস fₙ','RC PASSA-ALTA fₙ','RC HIGH PASS fₙ','RC ہائی پاس fₙ','RC ФВЧ fₙ','RC-HOCHPASS fₙ','RCハイパス fₙ'],
+cc_rllp:['RL ALÇAK GEÇİREN fₙ','RL LOW-PASS fₙ','RL 低通 fₙ','RL लो-पास fₙ','RL PASO BAJO fₙ','RL منخفض التمرير fₙ','RL PASSE-BAS fₙ','RL লো-পাস fₙ','RL PASSA-BAIXA fₙ','RL LOW PASS fₙ','RL لو پاس fₙ','RL ФНЧ fₙ','RL-TIEFPASS fₙ','RLローパス fₙ'],
+cc_rlhp:['RL YÜKSEK GEÇİREN fₙ','RL HIGH-PASS fₙ','RL 高通 fₙ','RL हाई-पास fₙ','RL PASO ALTO fₙ','RL عالي التمرير fₙ','RL PASSE-HAUT fₙ','RL হাই-পাস fₙ','RL PASSA-ALTA fₙ','RL HIGH PASS fₙ','RL ہائی پاس fₙ','RL ФВЧ fₙ','RL-HOCHPASS fₙ','RLハイパス fₙ'],
+cc_rlcres:['RLC REZONANS FREKANSI (f₀)','RLC RESONANT FREQUENCY (f₀)','RLC 谐振频率 (f₀)','RLC अनुनादी आवृत्ति (f₀)','FRECUENCIA DE RESONANCIA RLC (f₀)','تردد رنين RLC (f₀)','FRÉQUENCE DE RÉSONANCE RLC (f₀)','RLC রেজোন্যান্স ফ্রিকোয়েন্সি (f₀)','FREQUÊNCIA DE RESSONÂNCIA RLC (f₀)','FREKUENSI RESONANSI RLC (f₀)','RLC ریزوننس فریکوئنسی (f₀)','РЕЗОНАНСНАЯ ЧАСТОТА RLC (f₀)','RLC-RESONANZFREQUENZ (f₀)','RLC共振周波数 (f₀)'],
+cc_reactance:['Endüktif Reaktans (Xₗ)','Inductive Reactance (Xₗ)','感抗 (Xₗ)','प्रेरकीय रिएक्टेंस (Xₗ)','Reactancia inductiva (Xₗ)','المفاعلة الحثية (Xₗ)','Réactance inductive (Xₗ)','ইন্ডাক্টিভ রিঅ্যাক্ট্যান্স (Xₗ)','Reatância indutiva (Xₗ)','Reaktansi Induktif (Xₗ)','انڈکٹو ری ایکٹنس (Xₗ)','Индуктивное сопротивление (Xₗ)','Induktiver Blindwiderstand (Xₗ)','誘導リアクタンス (Xₗ)']
+};
+const d=window.MT_ALL_TRANSLATIONS||(window.MT_ALL_TRANSLATIONS={});
+Object.keys(rows).forEach(k=>{d[k]={};langs.forEach((l,i)=>d[k][l]=rows[k][i]);});
+function apply(){const l=localStorage.getItem('mt-detector-language')||'tr';document.querySelectorAll('#circuit-calculators [data-i18n], [data-i18n="cc_nav"]').forEach(el=>{if(d[el.dataset.i18n]&&d[el.dataset.i18n][l]!=null)el.textContent=d[el.dataset.i18n][l];});}
+document.addEventListener('DOMContentLoaded',apply);
+let last=localStorage.getItem('mt-detector-language')||'tr';
+setInterval(()=>{const now=localStorage.getItem('mt-detector-language')||'tr';if(now!==last){last=now;apply();}},150);
+})();
+</script>
 </body>
 </html>
 
