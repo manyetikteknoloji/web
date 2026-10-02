@@ -152,7 +152,113 @@
 .circuit-tab.active{background:#06b6d4;color:#fff;border-color:#22d3ee;box-shadow:0 8px 25px rgba(6,182,212,.18)}
 </style>
 
-</head>
+
+<style id="mt-nav-fix">
+/* MT Detector - masaüstü menü düzeni */
+@media (min-width: 1024px) {
+  header nav {
+    gap: 0.35rem !important;
+  }
+
+  header nav a,
+  header nav button {
+    white-space: normal !important;
+    line-height: 1.15 !important;
+    text-align: center;
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Menüde uzun başlıkların kontrollü genişliği */
+  header nav a:nth-of-type(1) { min-width: 66px; }   /* Ana Sayfa */
+  header nav a:nth-of-type(2) { min-width: 70px; }   /* Özellikler */
+  header nav a:nth-of-type(3) { min-width: 88px; }   /* Teknolojimiz */
+  header nav a:nth-of-type(4) { min-width: 82px; }   /* MT Simülatör */
+  header nav a:nth-of-type(5) { min-width: 82px; }   /* Ses Analizörü */
+  header nav a:nth-of-type(6) { min-width: 92px; }   /* LC Rezonans */
+  header nav a:nth-of-type(7) { min-width: 98px; }   /* Devre Hesaplayıcıları */
+  header nav a:nth-of-type(8) { min-width: 62px; }   /* İletişim */
+
+  /* Ürünler butonu */
+  header nav > button,
+  header nav > a:first-child {
+    margin-right: 0.25rem;
+  }
+}
+
+/* Orta ekranlarda taşmayı azalt */
+@media (min-width: 1024px) and (max-width: 1250px) {
+  header {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  header nav {
+    gap: 0.15rem !important;
+  }
+
+  header nav a,
+  header nav button {
+    font-size: 0.72rem !important;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+}
+
+/* Mobil/tablet */
+@media (max-width: 1023px) {
+  header nav {
+    flex-wrap: wrap;
+    gap: 0.35rem !important;
+  }
+
+  header nav a,
+  header nav button {
+    line-height: 1.15 !important;
+  }
+}
+</style>
+
+<
+<style id="mt-product-menu-fix">
+/* Ürünler menüsü: eski gibi sola hizalı ve tek sütun */
+@media (min-width: 768px) {
+  .product-nav-wrap {
+    position: relative !important;
+  }
+
+  .product-nav-menu {
+    left: 0 !important;
+    right: auto !important;
+    transform: none !important;
+    width: 330px !important;
+    max-width: 330px !important;
+    padding: .65rem !important;
+  }
+
+  .product-nav-menu.open {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: .15rem !important;
+  }
+
+  .product-nav-link {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    padding: .7rem .75rem !important;
+  }
+
+  .product-nav-number {
+    width: 1.9rem !important;
+    height: 1.9rem !important;
+  }
+}
+</style>
+
+/head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
 <div class="glow-blob w-[500px] h-[500px] bg-cyan-500 -top-20 -left-20"></div>
 <div class="glow-blob w-[600px] h-[600px] bg-blue-600 top-1/3 -right-40"></div>
